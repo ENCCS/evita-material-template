@@ -1,6 +1,6 @@
 # LESSON NAME
 
-Intro
+`HERE <./notebook/Python-HPDA.ipynb>`_ is the initial file for the lesson material template for the EVITA project.
 
 :::{prereq}
 prerequisites
