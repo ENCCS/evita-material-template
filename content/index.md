@@ -16,7 +16,13 @@ prerequisites
 ```{toctree}
 :caption: The lesson
 :maxdepth: 1
+
+Python-HPDA-0-SoftwareSetup
+Python-HPDA
+Python-HPDA-1-Motivation
+Python-HPDA-2-EfficientArrayComputing
 ```
+
 
 ```{toctree}
 :caption: Reference
