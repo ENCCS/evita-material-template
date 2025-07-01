@@ -1,4 +1,4 @@
-# LESSON NAME
+# Python for High Performance Data Analysis
 
 This (https://github.com/ENCCS/evita-material-template/blob/main/content/notebook/Python-HPDA.ipynb) links to the initial file for the lesson material template for the EVITA project.
 
@@ -6,12 +6,10 @@ This (https://github.com/ENCCS/evita-material-template/blob/main/content/noteboo
 prerequisites
 :::
 
-```{csv-table}
-:delim: ;
-:widths: auto
-
-20 min ; {doc}`filename`
-```
+:::{callout}
+- Intended learning outcomes
+- Connection to skills tree
+:::
 
 ```{toctree}
 :caption: The lesson
