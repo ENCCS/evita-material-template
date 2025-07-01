@@ -1,6 +1,6 @@
 # LESSON NAME
 
-`HERE <https://github.com/ENCCS/evita-material-template/blob/main/content/notebook/Python-HPDA.ipynb>`__ is the initial file for the lesson material template for the EVITA project.
+This (https://github.com/ENCCS/evita-material-template/blob/main/content/notebook/Python-HPDA.ipynb) links to the initial file for the lesson material template for the EVITA project.
 
 :::{prereq}
 prerequisites
