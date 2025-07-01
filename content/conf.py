@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "LESSON NAME"
-copyright = "2021, The contributors"
+project = "Python for High Performace Data Analysis"
+copyright = "2025, The contributors"
 author = "The contributors"
 github_user = "ENCCS"
 github_repo_name = ""  # auto-detected from dirname if blank
