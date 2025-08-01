@@ -1,0 +1,1368 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "3f4bbffd-9158-4439-a56b-e1387230898a",
+   "metadata": {},
+   "source": [
+    "# 2. Efficient Array Computing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d75d6ddf-8952-4ede-8ef6-d2007b13af84",
+   "metadata": {},
+   "source": [
+    "This episode introduces how to write high-performance numerical code in Python packages (Numpy, Pandas, and Scipy) by leveraging tools and libraries designed to optimize computation speed and memory usage. It explores strategies such as vectorization with NumPy, just-in-time compilation using Numba, and parallelization techniques that can significantly reduce execution time. These methods help Python developers overcome the traditional performance limitations of the language, making it suitable for intensive scientific and engineering applications.\n",
+    "\n",
+    "#### Learning objectives\n",
+    "\n",
+    "- Understand limitations of Python’s standard library for large data processing\n",
+    "- Understand the logic behind NumPy ndarrays and learn to use some NumPy numerical computing tools\n",
+    "- Learn to use data structures and analysis tools from Panda\n",
+    "\n",
+    "#### Instructor notes\n",
+    "\n",
+    "- 25 min teaching/type-along\n",
+    "- 25 min exercising"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0286fb84-bdb6-4674-aec5-95ebc44917d2",
+   "metadata": {},
+   "source": [
+    "<div class=\"alert alert-info\">\n",
+    "\n",
+    "#### Contents of this notebook\n",
+    "\n",
+    "- [2.1 Why Can Python Be Slow?](#2.1-Why-Can-Python-Be-Slow?)\n",
+    "- [2.2 Numpy](#2.2-Numpy)\n",
+    "- [2.3 Pandas](#2.3-Pandas)\n",
+    "- [2.4 Scipy](#2.4-Scipy)\n",
+    "- [2.5 Exercises](#2.5-Exercises)\n",
+    "- [2.6 Keypoints](#2.6-Keypoints) \n",
+    "- [2.7 Episode Quizzes](#2.7-Episode-Quizzes)\n",
+    "</div>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "77d1698a-d0d8-4f7d-82c7-295879509bac",
+   "metadata": {},
+   "source": [
+    "## 2.1 Why Can Python Be Slow?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "60f85dc7-f976-4f68-8a00-7a932a85e61b",
+   "metadata": {},
+   "source": [
+    "Computer programs are nowadays practically always written in a high-level human readable programming language and then translated to the actual machine instructions that a processor understands. There are two main approaches for this translation:\n",
+    "- For **compiled** programming languages, the translation is done by a compiler before the execution of the program\n",
+    "- For **interpreted** languages, the translation is done by an interpreter during the execution of the program\n",
+    "\n",
+    "Compiled languages are typically more efficient, but the behaviour of the program during runtime is more static than with interpreted languages. The compilation step can also be time consuming, so the software cannot always be tested as rapidly during development as with interpreted languages.\n",
+    "\n",
+    "Python is an interpreted language, and many features that make development rapid with Python are a result of that, with the price of reduced performance in many cases."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "03f1affd-89bc-4aee-bc40-adb890cf1aa1",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.1.1 Dynamic typing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "285d845b-de02-4172-b9e7-161d20afcab9",
+   "metadata": {},
+   "source": [
+    "Python is a dynamic language. Variables get a type only during the runtime when values (Python objects) are assigned to them, so it is more difficult for the interpreter to optimize the execution. In comparison, a compiler can make extensive analysis and optimization before the execution. Even though there has in recent years been a lot of progress in just-in-time (**JIT**) compilation techniques that allow programs to be optimized at runtime, the inherent, dynamic nature of the Python programming language remains one of its main performance bottlenecks."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5bccfc24-8f69-4b3f-a04f-eb20bb1fc4c9",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.1.2 Flexible data structures"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a3a649b7-bb1d-4c4e-8841-2aa28daa2f66",
+   "metadata": {},
+   "source": [
+    "The built-in data structures of Python, such as lists and dictionaries, are very flexible, but they are also very generic which makes them not well suited for extensive numerical computations. Even though the implementation of data structures is often quite efficient when processing different types of data, there is a lot of overhead due to the generic nature of these data structures when processing only a single type of data.\n",
+    "\n",
+    "In summary, the flexibility and dynamic nature of Python, which enhances programmer productivity greatly, is also the main cause for the performance problems. Fortunately, as we discuss in the course, many of the bottlenecks can be circumvented."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "90608761-e934-475a-aad5-77cd7c02b635",
+   "metadata": {},
+   "source": [
+    "## 2.2 NumPy"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3255c658-7a01-44cb-af76-b5a1a439af44",
+   "metadata": {},
+   "source": [
+    "As probably the most fundamental building block of the scientific computing ecosystem in Python, NumPy offers comprehensive mathematical functions, random number generators, linear algebra routines, Fourier transforms, and more.\n",
+    "\n",
+    "NumPy is based on well-optimized C code, which gives much better performace than regular Python. In particular, by using homogeneous data structures, NumPy *vectorizes* mathematical operations where fast pre-compiled code can be applied to a sequence of data instead of using traditional `for` loops."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "638075ee-14dd-4b45-9eec-1e8adda44ca3",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.1 Arrays"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0d1273f6-0885-4ce5-bd57-27d5ab1ed876",
+   "metadata": {},
+   "source": [
+    "The core of NumPy is the NumPy `ndarray` (n-dimensional array). Compared to a Python list, an ndarray is similar in terms of serving as a data container. Some differences between the two are:\n",
+    "- ndarrays can have multiple dimensions, *e.g.* a 1-D array is a vector, a 2-D array is a matrix\n",
+    "- ndarrays are fast only when all data elements are of the same type\n",
+    "- ndarray operations are fast when vectorized\n",
+    "- ndarrays are slower for certain operations, *e.g.* appending elements\n",
+    "\n",
+    "<center><img src=\"images/python-list-vs-numpy-array.svg\" width=\"512\"></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "94e8874f-92bf-49d7-af16-166bf9120cb8",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.2 Data types"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b2064859-4089-4ed4-99e9-98f1a7b10169",
+   "metadata": {},
+   "source": [
+    "NumPy supports a much greater variety of numerical types (`dtype`) than Python does. There are 5 basic numerical types representing booleans (`bool`), integers (`int`), unsigned integers (`uint`) floating point (`float`) and complex (`complex`)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9e5d7c70-b1fe-42d6-b717-85249119c66a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "# create float32 variable\n",
+    "x = np.float32(1.0)\n",
+    "\n",
+    "# array with uint8 unsigned integers\n",
+    "z = np.arange(3, dtype=np.uint8)\n",
+    "\n",
+    "# convert array to floats\n",
+    "z.astype(float)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4ad93503-69e1-479a-9f0f-619776154c31",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.3 Creating NumPy arrays"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1082ddb2-3f15-4317-b7c9-462371886b31",
+   "metadata": {},
+   "source": [
+    "One way to create a NumPy array is to convert from a Python list, but make sure that the list is homogeneous (contains same data type) otherwise performace will be downgraded. Since appending elements to an existing array is slow, it is a common practice to preallocate the necessary space with `np.zeros` or `np.empty` when converting from a Python list is not possible."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6ff7c08b-0c42-435d-87f3-cdbf30fa077c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "a = np.array((1, 2, 3, 4), float)\n",
+    "print(f\"a = {a}\\n\")\n",
+    "# array([ 1., 2., 3., 4.])\n",
+    "\n",
+    "list1 = [[1, 2, 3], [4, 5, 6]]\n",
+    "mat = np.array(list1, complex)\n",
+    "# create complex array, with imaginary part equal to zero\n",
+    "print(f\"mat = \\n {mat} \\n\")\n",
+    "# array([[ 1.+0.j, 2.+0.j, 3.+0.j],\n",
+    "#       [ 4.+0.j, 5.+0.j, 6.+0.j]])\n",
+    "\n",
+    "print(f\"mat.shape={mat.shape}, mat.size={mat.size}\")\n",
+    "# mat.shape=(2, 3), mat.size=6"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "dc3debb2-b030-4146-98fb-3e2f0353f488",
+   "metadata": {},
+   "source": [
+    "`arange` and `linspace` can generate ranges of numbers:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "57d73af3-b0e4-41af-a9f2-d382c38f15d6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = np.arange(10)\n",
+    "print(a)\n",
+    "# array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n",
+    "\n",
+    "b = np.arange(0.1, 0.2, 0.02)\n",
+    "print(b)\n",
+    "# array([0.1 , 0.12, 0.14, 0.16, 0.18])\n",
+    "\n",
+    "c = np.linspace(-4.5, 4.5, 5)\n",
+    "print(c)\n",
+    "# array([-4.5 , -2.25, 0. , 2.25, 4.5 ])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e598f791-78c1-4ddb-8a7f-8e71cc7c6f46",
+   "metadata": {},
+   "source": [
+    "Array with given shape initialized to `zeros`, `ones`, arbitrary value (`full`) or unitialized (`empty`):"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "07e42c49-faf2-406f-9105-b5c6aa56e5ca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = np.zeros((4, 6), float)\n",
+    "print(a.shape)\n",
+    "# (4, 6)\n",
+    "\n",
+    "b = np.ones((2, 4))\n",
+    "print(b)\n",
+    "# array([[ 1., 1., 1., 1.],\n",
+    "#       [ 1., 1., 1., 1.]])\n",
+    "\n",
+    "c = np.full((2, 3), 4.2)\n",
+    "print(c)\n",
+    "# array([[4.2, 4.2, 4.2],\n",
+    "#       [4.2, 4.2, 4.2]])\n",
+    "\n",
+    "d = np.empty([3, 3])\n",
+    "print(d)\n",
+    "# array([[0.0000e+000 0.0000e+000 0.0000e+000]\n",
+    "#       [0.0000e+000 0.0000e+000 1.3597e-320]\n",
+    "#       [0.0000e+000 0.0000e+000 0.0000e+000]]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9758f9cc-b746-4337-b936-40322933a2cd",
+   "metadata": {},
+   "source": [
+    "Similar arrays as an existing array:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0008612f-ecd8-436e-8537-94da9a2e579c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = np.zeros((4, 6), float)\n",
+    "b = np.empty_like(a)\n",
+    "c = np.ones_like(a)\n",
+    "d = np.full_like(a, 9.1)\n",
+    "print(f\"a={a}\\n\\n b={b}\\n\\n c={c}\\n\\n d={d}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "57f8e107-7284-4bec-a564-584ac8bebf0e",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.4 Array operations and manipulations"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2a4f3199-4ba9-489b-b1c0-f2dc648f1d5e",
+   "metadata": {},
+   "source": [
+    "All the familiar arithmetic operators in NumPy are applied elementwise:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7c13292d-41c0-47f0-b466-53d522a2e5e2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 1D example\n",
+    "\n",
+    "import numpy as np\n",
+    "a = np.array([1, 2, 3])\n",
+    "b = np.array([4, 5, 6])\n",
+    "\n",
+    "print(f\" a+b = {a+b}\\n a/b = {a/b}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "059cf522-d280-4d5b-b231-13019a6bf3bb",
+   "metadata": {},
+   "source": [
+    "<center><img src=\"./images/np_add_1d_new.svg\" width=\"512\"></center>\n",
+    "<center><img src=\"./images/np_div_1d_new.svg\" width=\"512\"></center>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3a9cfb3a-1951-4da2-b5f1-5a5cbbf80835",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 2D example\n",
+    "\n",
+    "import numpy as np\n",
+    "a = np.array([[1, 2, 3], [4, 5, 6]])\n",
+    "b = np.array([[10, 10, 10], [10, 10, 10]])\n",
+    "\n",
+    "print(a+b)\n",
+    "# [[11, 12, 13],\n",
+    "#  [14, 15, 16]]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3948aac9-7e4e-4289-9c6b-a94bf3149c8b",
+   "metadata": {},
+   "source": [
+    "<center><img src=\"./images/np_add_2d.svg\" width=\"512\"></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c98b90a3-40b6-44af-a093-4d06448602ba",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.5 Array indexing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b6169cc3-d7ee-4d67-bde2-b7b133b18b12",
+   "metadata": {},
+   "source": [
+    "Basic indexing is similar to Python lists. Note that advanced indexing creates copies of arrays."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ee6baded-2b25-4fb3-a3f7-831e8fa47132",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 1D example\n",
+    "\n",
+    "import numpy as np\n",
+    "\n",
+    "data = np.array([1,2,3,4,5,6,7,8])\n",
+    "\n",
+    "# integer indexing\n",
+    "print(\"Integer indexing\")\n",
+    "print(f\"data = {data}\")\n",
+    "print(f\"data[3] = {data[3]}\")\n",
+    "print(f\"data[0:2] = {data[0:2]}\")\n",
+    "print(f\"data[-2] = {data[-2]}\")\n",
+    "print(f\"data[::-4] = {data[::-4]}\")\n",
+    "\n",
+    "# fancy indexing\n",
+    "print(\"\\nFancy indexing\")\n",
+    "print(f\"data[[1,6,3]] = {data[[1,6,3]]}\")\n",
+    "\n",
+    "# boolean indexing\n",
+    "print(\"\\nBoolean indexing\")\n",
+    "print(f\"data[data>5] = {data[data>5]}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9ab8c685-4150-445d-8fa4-1aca454a2f51",
+   "metadata": {},
+   "source": [
+    "<center><img src=\"./images/array-indexing-1D.png\" width=\"384\"></center>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "779f9979-b1d8-43c2-b7c5-e78fb520bf9a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 2D example\n",
+    "\n",
+    "data = np.array([[1, 2, 3, 4],[5, 6, 7, 8],[9, 10, 11, 12]])\n",
+    "\n",
+    "# integer indexing\n",
+    "print(\"Integer indexing\")\n",
+    "print(f\"data[1] = {data[1]}\")\n",
+    "print(f\"data[:, 1] = {data[:, 1]}\")\n",
+    "print(f\"data[1:3, 2:4] = {data[1:3, 2:4]}\")\n",
+    "\n",
+    "# fancy indexing\n",
+    "print(\"\\nFancy indexing\")\n",
+    "print(f\"data[[0,2,1], [2,3,0]] = {data[[0,2,1], [2,3,0]]}\")\n",
+    "\n",
+    "# boolean indexing\n",
+    "print(\"\\nBoolean indexing\")\n",
+    "print(f\"data[data>10] = {data[data>10]}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "17c2f2cc-e4ad-45ac-ab58-71c0c30eaf6f",
+   "metadata": {},
+   "source": [
+    "<center><img src=\"./images/array-indexing-2D.png\" width=\"512\"></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d9aeff2d-856f-45df-8cf9-79d63c7c5b8c",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.6 Array reshaping"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bb12ad14-b2c9-4226-ba82-8d496df9b057",
+   "metadata": {},
+   "source": [
+    "Sometimes, you need to change the dimension of an array. One of the most common need is to transposing the matrix during the dot product. Switching the dimensions of a NumPy array is also quite common in more advanced cases."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ff293415-b252-4749-b6b5-c8df44cc429b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "data = np.array([1,2,3,4,5,6,7,8,9,10,11,12])\n",
+    "print(f\"data = \\n{data}\\n\")\n",
+    "\n",
+    "print(f\"data.reshape(3,4) = \\n{data.reshape(3,4)}\\n\")\n",
+    "\n",
+    "print(f\"data.reshape(4,3) = \\n{data.reshape(4,3)}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c3a4721b-0abf-41ac-ae73-6d9f3037bb63",
+   "metadata": {},
+   "source": [
+    "<center><img src=\"./images/array-reshaping.png\" width=\"512\"></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a2ff3cf3-e3af-4b17-b6f4-ea4f673ee6fe",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.7 I/O with NumPy"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "aa4f1d0d-ee28-4fe7-a83f-d1a861b4420b",
+   "metadata": {},
+   "source": [
+    "Numpy provides functions for reading from/writing to files. Both ASCII and binary formats are supported with the CSV and npy/npz formats."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cfa22e44-bd96-40fe-bc51-6587d2a596e7",
+   "metadata": {},
+   "source": [
+    "**CSV**\n",
+    "\n",
+    "The `numpy.loadtxt()` and `numpy.savetxt()` functions can be used. They save in a regular column layout and can deal with different delimiters, column titles and numerical representations."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e09e8057-7dc0-4b6d-9cd9-2a478ea7ba62",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = np.array([1, 2, 3, 4])\n",
+    "np.savetxt(\"my_array.csv\", a)\n",
+    "b = np.loadtxt(\"my_array.csv\")\n",
+    "\n",
+    "print(a == b) # [ True  True  True  True]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0d2250c8-8722-4376-907a-46dc1e1e6758",
+   "metadata": {},
+   "source": [
+    "**Binary**\n",
+    "\n",
+    "The npy format is a binary format used to dump arrays of any shape. Several arrays can be saved into a single npz file, which is simply a zipped collection of different npy files. All the arrays to be saved into a npz file can be passed as kwargs to the `numpy.savez()` function. The data can then be recovered using the `numpy.load()` method, which returns a dictionary-like object in which each key points to one of the arrays."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "69eab475-5073-4a2e-a2bf-4f2419ed4b1f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = np.array([1, 2, 3, 4])\n",
+    "b = np.array([5, 6, 7, 8])\n",
+    "\n",
+    "np.savez(\"my_arrays.npz\", array_1=a, array_2=b)\n",
+    "data = np.load(\"my_arrays.npz\")\n",
+    "\n",
+    "print(data['array_1'] == a) # [ True  True  True  True]\n",
+    "print(data['array_2'] == b) # [ True  True  True  True]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b91fe11d-1413-4a87-8844-d026a17d17d6",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.2.8 Random numbers"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1a30fd65-7014-47aa-97eb-0dd1f759e275",
+   "metadata": {},
+   "source": [
+    "The module `numpy.random` provides several functions for constructing random arrays\n",
+    "- `random()`: uniform random numbers\n",
+    "- `normal()`: normal distribution\n",
+    "- `choice()`: random sample from given array\n",
+    "- …"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f80e6817-410f-4322-ba59-f509077c32ed",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "print(np.random.random((2,2)),'\\n')\n",
+    "\n",
+    "print(np.random.choice(np.arange(4), 10))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f7e60549-1099-49bb-a72e-694d0146c0ad",
+   "metadata": {},
+   "source": [
+    "## 2.3 Pandas"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4e44aed7-4b4a-4249-b2c7-5d31d444ed08",
+   "metadata": {},
+   "source": [
+    "Pandas is a Python package that provides high-performance and easy to use data structures and data analysis tools. Built on NumPy arrays, Pandas is particularly well suited to analyze tabular and time series data. Although NumPy could in principle deal with structured arrays (arrays with mixed data types), it is not efficient.\n",
+    "\n",
+    "The core data structures of Pandas are Series and Dataframes.\n",
+    "- A Pand`as ser`ies is a one-dimensional NumPy array with an index which we could use to access the data\n",
+    "`- A dataf`rame consist of a table of values with labels for each row and column. A dataframe can combine multiple data types, such as numbers and text, but the data in each column is of the same type.\n",
+    "- Each column of a dataframe is a series object - a dataframe is thus a colle tion of series.\n",
+    "\n",
+    "<center><img src=\"./images/pandas_dataframe.svg\" width=\"378\"></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "90eb2610-6f1e-4e83-a054-a0b1a16ace12",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.3.1 Tidy vs untidy data"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4f2aea7a-2b10-416d-943e-a25742952f61",
+   "metadata": {},
+   "source": [
+    "Most tabular data is either in a tidy format or a untidy format (some people refer them as the long format or the wide format).\n",
+    "- In untidy (wide) format, each row represents an observation consisting of multiple variables and each variable has its own column. This is intuitive and easy for us to understand and make comparisons across different variables, calculate statistics,* etc*.\n",
+    "- In tidy (long) formt *, i.*,e. column-oriented format, each row represents only one variable of the observation, and can be considered “computer readable”.\n",
+    "\n",
+    "When it comes to data analysis using Pandas, the tidy format is recommended:\n",
+    "- Each column can be stored as a vector and this not only saves memory but also allows for vectorized calculations which are much faster.\n",
+    "- It’s easier to filter, group, join and aggregate the data.\n",
+    "\n",
+    "The name “tidy data” comes from [Wickham’s paper (2014)](https://vita.had.co.nz/papers/tidy-data.pdf) which describes the ideas in great detail."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5767a756-8118-40ce-bff3-0aeefc460912",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.3.2 Data analysis workflow"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f21cf1c1-8557-4b00-8d82-5f5c88928907",
+   "metadata": {},
+   "source": [
+    "Pandas is a powerful tool for many steps of a data analysis pipeline:\n",
+    "- Downloading and reading in datasets\n",
+    "- Initial exploration of data\n",
+    "- Pre-processing and cleaning data\n",
+    "\t- renaming, reshaping, reordering, type conversion\n",
+    "    - handling duplicate/missing/invalid data\n",
+    "- Analysis\n",
+    "\n",
+    "To explore some of the capabilities, we start with an example dataset containing the passenger list from the Titanic, which is often used in Kaggle competitions and data science tutorials. First step is to load Pandas and download the dataset into a dataframe."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "30d55613-ebc2-4ca7-b2a4-b28caf32c36c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "url = \"https://raw.githubusercontent.com/pandas-dev/pandas/master/doc/data/titanic.csv\"\n",
+    "\n",
+    "# set the index to the \"Name\" column\n",
+    "titanic = pd.read_csv(url, index_col=\"Name\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a74b8720-f731-4de1-8c7b-06745da45458",
+   "metadata": {},
+   "source": [
+    "> Pandas also understands multiple other formats, for example `read_excel()`, `read_hdf()`, `read_json()`, *etc.* (and corresponding methods to write to file: `to_csv()`, `to_excel()`, `to_hdf()`, `to_json()`, …)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "41bf3e24-e7ed-4dd5-81fc-cf63cb3553e9",
+   "metadata": {},
+   "source": [
+    "We can now view the dataframe to get an idea of what it contains and print some summary statistics of its numerical data:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1827cbe3-b2a4-43f0-be3c-b7fb61dfd57e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# print the first 5 lines of the dataframe\n",
+    "print(titanic.head())\n",
+    "\n",
+    "# print some information about the columns\n",
+    "print(titanic.info())\n",
+    "\n",
+    "# print summary statistics for each column\n",
+    "print(titanic.describe())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f66cc564-6965-4087-95a8-95d8d0fdb702",
+   "metadata": {},
+   "source": [
+    "Now we have information on passenger names, survival (0 or 1), age, ticket fare, number of siblings/spouses, etc. With the summary statistics we see that the average age is 29.7 years, maximum ticket price is 512 USD, 38% of passengers survived, *etc.*\n",
+    "\n",
+    "Unlike a NumPy array, a dataframe can combine multiple data types, such as numbers and text, but the data in each column is of the same type. So we say a column is of type `int64` or of type `object`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0d933b19-a3b4-4081-9095-26df46238b4b",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.3.3 Indexing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "253fcd4a-fe7d-4cf5-86e9-3489d4da425a",
+   "metadata": {},
+   "source": [
+    "Let’s inspect one column of the dataframe:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2f9edd7c-19b0-42b3-a3e5-a5f9c78fa219",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "titanic[\"Age\"] # same as \"titanic.Age\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "272c4327-a71e-4bb6-82d6-5af416576741",
+   "metadata": {},
+   "source": [
+    "The columns have names. Here’s how to get them:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f6e48ca8-8137-4476-98c7-ed9ab6474c1d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "titanic.columns"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "58175d55-aa77-47fc-82e3-bc4cccfa4514",
+   "metadata": {},
+   "source": [
+    "However, the rows also have names! This is what Pandas calls the `index`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2271ab25-bfad-4e5e-82d4-9fa6e64f9af5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "titanic.index"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3ebf7427-ba86-4405-a84e-53b5c036a366",
+   "metadata": {},
+   "source": [
+    "We saw above how to select a single column, but there are many ways of selecting (and setting) single or multiple rows, columns and elements. We can refer to columns and rows either by number or by their name:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "cfe4f23c-7cfb-4d54-a0e9-6cb5b6df912b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(titanic.loc[\"Lam, Mr. Ali\",\"Age\"])             # select single value by row and column\n",
+    "print(titanic.loc[\"Lam, Mr. Ali\",\"Survived\":\"Age\"])  # slice the dataframe by row and column *names*\n",
+    "print(titanic.iloc[692,3:6])                         # same slice as above by row and column *numbers*\n",
+    "\n",
+    "print(titanic.at[\"Lam, Mr. Ali\", \"Age\"])             # select single value by row and column *name* (fast)\n",
+    "\n",
+    "titanic.at[\"Lam, Mr. Ali\", \"Age\"] = 44               # set single value by row and column *name* (fast)\n",
+    "print(titanic.iat[692,4])                            # select same value by row and column *number* (fast)\n",
+    "\n",
+    "# print(titanic[\"somecolumns\"] = \"somevalue\")        # set a whole column"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "836d0885-74f2-4199-bf29-e14d8aed9233",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.3.4 Missing/invalid data"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "87ef2401-993d-4b77-8856-3260ad2cf8e8",
+   "metadata": {},
+   "source": [
+    "What if your dataset has missing data? Pandas uses the value np.nan to represent missing data, and by default does not include it in any computations. We can find missing values, drop them from our dataframe, replace them with any value we like or do forward or backward filling."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5095ac3f-d7fe-45c8-95a8-e3f8837afaee",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "titanic.isna()                    # returns boolean mask of NaN values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d152f855-7660-4ea2-a8f8-4d013e612b37",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(titanic.dropna())                  # drop missing values\n",
+    "print(titanic.dropna(how=\"any\"))         # or how=\"all\"\n",
+    "print(titanic.dropna(subset=[\"Cabin\"]))  # only drop NaNs from one column\n",
+    "print(titanic.fillna(0))                 # replace NaNs with zero"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5e8f9b35-d07a-48c6-b429-dec017e83eb9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(titanic.ffill())    # forward-fill NaNs\n",
+    "print(titanic.bfill())    # backward-fill NaNs"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "78e45cac-45e7-4a2b-a961-ba7505aa2037",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.3.5 Groupby"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "43671b2a-e302-492f-89be-97c03d13355f",
+   "metadata": {},
+   "source": [
+    "`groupby()` is a powerful method which splits a dataframe and aggregates data in groups. To see what’s possible, let’s test the old saying “Women and children first”. We start by creating a new column *Child* to indicate whether a passenger was a child or not, based on the existing *Age* column. For this example, let’s assume that you are a child when you are younger than 12 years:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1689b6e1-f8ef-41cd-857e-f087599b4089",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "titanic[\"Child\"] = titanic[\"Age\"] < 12\n",
+    "titanic[\"Child\"]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ccf3c647-6fa1-41ff-8fae-6b8f5be92952",
+   "metadata": {},
+   "source": [
+    "Now we can test the saying by grouping the data on Sex and then creating further sub-groups based on Child:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6f53e9ea-5f62-4606-9069-d60ce402f246",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "titanic.groupby([\"Sex\", \"Child\"])[\"Survived\"].mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bd641b3e-cecd-4b56-b8be-c134aea28529",
+   "metadata": {},
+   "source": [
+    "> Here we chose to summarize the data by its mean, but many other common statistical functions are available as dataframe methods, like `std()`, `min()`, `max()`, `cumsum()`, `median()`, `skew()`, `var()`, *etc.*"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9de60854-cf0b-4b02-961a-be36abc43353",
+   "metadata": {},
+   "source": [
+    "The workflow of `groupby()` can be divided into three general steps:\n",
+    "- Splitting: Partition the data into different groups based on some criterion.\n",
+    "- Applying: Do some caclulation within each group. Different kinds of calulations might be aggregation, transformation, filtration.\n",
+    "- Combining: Put the results back together into a single object.\n",
+    "\n",
+    "<center><img src=\"./images/groupby-workflow.png\" width=\"512\"></center>\n",
+    "\n",
+    "> (Image source from lecture [An Introduction to Earth and Environmental Data Science](https://earth-env-data-science.github.io/intro.html)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e8481f91-7243-4949-85f1-e4a38e7760d3",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "## 2.4 Scipy "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0c8dba01-b9ef-4422-8c7f-896867ed7e3a",
+   "metadata": {},
+   "source": [
+    "\n",
+    "SciPy is a library that builds on top of NumPy. It contains a lot of interfaces to battle-tested numerical routines written in Fortran or C, as well as Python implementations of many common algorithms.\n",
+    "\n",
+    "Briefly, SciPy contains functionality for\n",
+    "- Special functions (Bessel, Gamma, *etc.*)\n",
+    "- Numerical integration\n",
+    "- Optimization\n",
+    "- Interpolation\n",
+    "- Fast Fourier Transform (FFT)\n",
+    "- Signal processing\n",
+    "- Linear algebra (more complete than in NumPy)\n",
+    "- Sparse matrices\n",
+    "- Statistics\n",
+    "- More I/O routine, *e.g.* Matrix Market format for sparse matrices, MATLAB files wer-law to a vector.tor.t), *etc.*s."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a3ada338-1a80-47bc-8784-c62bcb80d4e6",
+   "metadata": {},
+   "source": [
+    "Many of these are not written specifically for SciPy, but use the best available open source C or Fortran libraries. Thus, you get the best of Python and the best of compiled languages.\n",
+    "\n",
+    "Most functions are documented very well from a scientific standpoint: you aren’t just using some unknown function, but have a full scientific description and citation to the method and implementation.\n",
+    "\n",
+    "Let us look more closely into one out of the countless useful functions available in SciPy. `curve_fit()` is a non-linear least squares fitting function. NumPy has least-squares fitting via the `np.linalg.lstsq()` function, but we need to go to SciPy to find non-linear curve fitting. This example fits a power-law to a vector."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "abbfecc9-d5bb-40d4-9d16-36bdfd06ca22",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "from scipy.optimize import curve_fit\n",
+    "\n",
+    "def powerlaw(x, A, s):\n",
+    "    return A * np.power(x, s)\n",
+    "\n",
+    "# data\n",
+    "Y = np.array([9115, 8368, 7711, 5480, 3492, 3376, 2884, 2792, 2703, 2701])\n",
+    "X = np.arange(Y.shape[0]) + 1.0\n",
+    "\n",
+    "# initial guess for variables\n",
+    "p0 = [100, -1]\n",
+    "# fit data\n",
+    "params, cov = curve_fit(f=powerlaw, xdata=X, ydata=Y, p0=p0, bounds=(-np.inf, np.inf))\n",
+    "\n",
+    "print(\"A =\", params[0], \"+/-\", cov[0,0]**0.5)\n",
+    "print(\"s =\", params[1], \"+/-\", cov[1,1]**0.5)\n",
+    "\n",
+    "# optionally plot\n",
+    "import matplotlib.pyplot as plt\n",
+    "plt.plot(X,Y)\n",
+    "plt.plot(X, powerlaw(X, params[0], params[1]))\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "973e9707-a3b1-4af3-8e23-ecd630155ba7",
+   "metadata": {},
+   "source": [
+    "## 2.5 Exercises"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d7c74b20-0ace-49b8-ab7c-0bc2fe5b6310",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.5.1 Working effectively with dataframes"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9be7da04-5b63-4f5b-a37d-d74c3507cf08",
+   "metadata": {},
+   "source": [
+    "Recall the `curve_fit()` method from SciPy discussed above, and imagine that we want to fit powerlaws to every row in a large dataframe. How can this be done effectively?\n",
+    "\n",
+    "First define the `powerlaw()` function and another function for fitting a row of numbers:\n",
+    "```python\n",
+    "import numpy as np\n",
+    "import pandas as pd\n",
+    "from scipy.optimize import curve_fit\n",
+    "\n",
+    "def powerlaw(x, A, s):\n",
+    "    return A * np.power(x, s)\n",
+    "\n",
+    "def fit_powerlaw(row):\n",
+    "    X = np.arange(row.shape[0]) + 1.0\n",
+    "    params, cov = curve_fit(f=powerlaw, xdata=X, ydata=row, p0=[100, -1], bounds=(-np.inf, np.inf))\n",
+    "    return params[1]\n",
+    "```\n",
+    "\n",
+    "Next load a dataset with multiple rows similar to the one used in the example above:\n",
+    "```python\n",
+    "df = pd.read_csv(\"https://raw.githubusercontent.com/ENCCS/hpda-python/main/content/data/results.csv\")\n",
+    "# print first few rows\n",
+    "df.head()\n",
+    "```\n",
+    "\n",
+    "Now consider these four different ways of fitting a powerlaw to each row of the dataframe:\n",
+    "```python\n",
+    "# 1. Loop\n",
+    "\n",
+    "powers = []\n",
+    "for row_indx in range(df.shape[0]):\n",
+    "    row = df.iloc[row_indx,1:]\n",
+    "    p = fit_powerlaw(row)\n",
+    "    powers.append(p)\n",
+    "```\n",
+    "\n",
+    "```python\n",
+    "# 2. `iterrows()\n",
+    "\n",
+    "powers = []\n",
+    "for row_indx,row in df.iterrows():\n",
+    "    p = fit_powerlaw(row[1:])\n",
+    "    powers.append(p)\n",
+    "```\n",
+    "\n",
+    "```python\n",
+    "# 3. `apply()\n",
+    "\n",
+    "powers = df.iloc[:,1:].apply(fit_powerlaw, axis=1)\n",
+    "```\n",
+    "\n",
+    "```python\n",
+    "# 4. `apply()` with `raw=True`\n",
+    "\n",
+    "# raw=True passes numpy ndarrays instead of series to fit_powerlaw\n",
+    "powers = df.iloc[:,1:].apply(fit_powerlaw, axis=1, raw=True)\n",
+    "```\n",
+    "\n",
+    "Which one do you think is most efficient? You can measure the execution time by adding `%%timeit` to the first line of a Jupyter code cell. More on timing and profiling in a later episode."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4dcc8384-0056-4f4e-8963-641a8783d009",
+   "metadata": {},
+   "source": [
+    "<details>\n",
+    "\n",
+    "<summary>Solution</summary>\n",
+    "\n",
+    "The execution time for four different methods are described below. Note that you may get different numbers when you run these examples.\n",
+    "\n",
+    "```python\n",
+    "# 1 Loop\n",
+    "\n",
+    "%%timeit\n",
+    "powers = []\n",
+    "for row_indx in range(df.shape[0]):\n",
+    "   row = df.iloc[row_indx,1:]\n",
+    "   p = fit_powerlaw(row)\n",
+    "   powers.append(p)\n",
+    "\n",
+    "# 33.6 ms ± 682 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)\n",
+    "```\n",
+    "\n",
+    "```python\n",
+    "# 2. `iterrows()`\n",
+    "\n",
+    "%%timeit\n",
+    "powers = []\n",
+    "for row_indx,row in df.iterrows():\n",
+    "   p = fit_powerlaw(row[1:])\n",
+    "   powers.append(p)\n",
+    "\n",
+    "# 28.7 ms ± 947 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)\n",
+    "```\n",
+    "\n",
+    "```python\n",
+    "# 3. `apply()`\n",
+    "\n",
+    "%%timeit\n",
+    "powers = df.iloc[:,1:].apply(fit_powerlaw, axis=1)\n",
+    "\n",
+    "# 26.1 ms ± 1.19 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)\n",
+    "```\n",
+    "\n",
+    "```python\n",
+    "# 4. `apply()` with `raw=True`\n",
+    "\n",
+    "%%timeit\n",
+    "powers = df.iloc[:,1:].apply(fit_powerlaw, axis=1, raw=True)\n",
+    "\n",
+    "# 24 ms ± 1.27 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)\n",
+    "```\n",
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a29057ae-c342-4945-8ef2-688166c44d4f",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.5.2 Further analysis of Titanic passenger list dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d2a6f18b-72e1-4305-8dea-8fcc90c72d5b",
+   "metadata": {},
+   "source": [
+    "Consider the titanic dataset.\n",
+    "> If you haven’t done so already, load it into a dataframe before the exercises:\n",
+    "> `import pandas as pd; url = \"https://raw.githubusercontent.com/pandas-dev/pandas/master/doc/data/titanic.csv\"; titanic = pd.read_csv(url, index_col=\"Name\")`\n",
+    "- Compute the mean age of the first 10 passengers by slicing and the `mean` method\n",
+    "- Using boolean indexing, compute the survival rate (mean of “Survived” values) among passengers over and under the average age.\n",
+    "Now investigate the family size of the passengers (*i.e.* the “SibSp” column):\n",
+    "- What different family sizes exist in the passenger list?\n",
+    "    - Hint: try the `unique()` method\n",
+    "- What are the names of the people in the largest family group?\n",
+    "- (Advanced) Create histograms showing the distribution of family sizes for passengers split by the fare, i.e. one group of high-fare passengers (where the fare is above average) and one for low-fare passengers\n",
+    "    - Hint: instead of an existing column name, you can give a lambda function as a parameter to `hist` to compute a value on the fly. For example `lambda x: \"Poor\" if titanic[\"Fare\"].loc[x] < titanic[\"Fare\"].mean() else \"Rich\"`)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7eaaf004-3273-4ffb-89a4-8bb824e9e819",
+   "metadata": {},
+   "source": [
+    "<details>\n",
+    "\n",
+    "<summary>Solution</summary>\n",
+    "\n",
+    "1. Mean age of the first 10 passengers: \n",
+    "\t- `titanic.iloc[:10,:][\"Age\"].mean()` or \n",
+    "\t- `titanic.iloc[:10,4].mean()` or \n",
+    "\t- `titanic.loc[:\"Nasser, Mrs. Nicholas (Adele Achem)\", \"Age\"].mean()`\n",
+    "\n",
+    "2. Survival rate among passengers over and under average age:\n",
+    "\t- `titanic[titanic[\"Age\"] > titanic[\"Age\"].mean()][\"Survived\"].mean()` and \n",
+    "\t- `titanic[titanic[\"Age\"] < titanic[\"Age\"].mean()][\"Survived\"].mean()`\n",
+    "\n",
+    "3. Existing family sizes: `titanic[\"SibSp\"].unique()`\n",
+    "\n",
+    "4. Names of members of largest family(ies): `titanic[titanic[\"SibSp\"] == 8].index`\n",
+    "\n",
+    "5. `titanic.hist(\"SibSp\", lambda x: \"Poor\" if titanic[\"Fare\"].loc[x] < titanic[\"Fare\"].mean() else \"Rich\", rwidth=0.9)`\n",
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2674d523-39cd-401a-b762-c53fa1a73f96",
+   "metadata": {},
+   "source": [
+    "## 2.6 Keypoints"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "67623afb-3429-4cb3-afa3-21d28ad3d8a2",
+   "metadata": {},
+   "source": [
+    "- NumPy provides a static array data structure, fast mathematical operations for arrays and tools for linear algebra and random numbers\n",
+    "- Pandas dataframes are a good data structure for tabular data\n",
+    "- Dataframes allow both simple and advanced analysis in very compact form\n",
+    "- SciPy contains a lot of interfaces to battle-tested numerical routines"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "33310a26-1945-4aaf-8b34-c20ad93636bf",
+   "metadata": {},
+   "source": [
+    "## 2.7 Episode Quizzes"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a97caccf-3c39-46df-a966-248c5adab9de",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.7.1 Choice questions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d888bad7-56d4-4d23-92dc-454a199a1e6e",
+   "metadata": {},
+   "source": [
+    "Why are Python lists inefficient for numerical computations?\n",
+    "- **A) They store elements as generic objects with dynamic typing**\n",
+    "- B) They are statically typed\n",
+    "- C) They don't support indexing\n",
+    "- D) They don't support loops\n",
+    "\n",
+    "What is the main advantage of NumPy arrays (ndarray) over Python lists for numerical tasks?\n",
+    "- A) They can hold multiple data types\n",
+    "- B) They automatically parallelize loops\n",
+    "- **C) They store data in a compact, contiguous block of memory**\n",
+    "- D) They have larger memory overhead\n",
+    "\n",
+    "What is \"vectorization\" in the context of NumPy?\n",
+    "- A) A way to convert lists to dictionaries\n",
+    "- B) A process of compiling Python code\n",
+    "- C) A plotting technique\n",
+    "- **D) Replacing explicit loops with whole-array operations**\n",
+    "\n",
+    "How does a pandas DataFrame differ from a NumPy array?\n",
+    "- A) DataFrames are slower and less powerful\n",
+    "- **B) DataFrames support heterogeneous data types and labeled axes**\n",
+    "- C) Arrays use less memory\n",
+    "- D) DataFrames cannot be indexed\n",
+    "\n",
+    "What does `scipy.optimize.curve_fit()` do?\n",
+    "- A) Performs numerical integration\n",
+    "- **B) Fits data to a model function**\n",
+    "- C) Solves a linear system\n",
+    "- D) Computes a histogram"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f0703c92-05b4-4816-b8da-cd14c66fd6f9",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "### 2.7.2 Coding questions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "dfa4644c-b629-45fc-8eea-908d043c7657",
+   "metadata": {},
+   "source": [
+    "Generate a 1D NumPy array of 1 million random floats. Compute the square root of each element using:\n",
+    "- a) a Python for loop\n",
+    "- b) NumPy’s vectorized np.sqrt\n",
+    "\n",
+    "Load a CSV file of weather data (*e.g.*, temperature, humidity, wind).\n",
+    "- a) filter rows where temperature > 30°C\n",
+    "- b) compute the average humidity for each month using `groupby`\n",
+    "\n",
+    "Create a random 100×100 matrix A and a vector b.\n",
+    "- a) use `scipy.linalg.solve` to solve the system $Ax = b$\n",
+    "- b) verify the solution by checking the residual norm\n",
+    "\n",
+    "Simulate a DataFrame with missing values in numerical columns.\n",
+    "- a) fill missing values with the column mean (using NumPy)\n",
+    "- b) compute basic statistics before and after imputation\n",
+    "\n",
+    "Generate noisy data for a quadratic function $y = ax² + bx + c$\n",
+    "- a) use `scipy.optimize.curve_fit` to fit the data and recover the original parameters\n",
+    "- b) plot the original *vs* fitted curve"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
