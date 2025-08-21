@@ -34,6 +34,7 @@ extensions = [
     # githubpages just adds a .nojekyll file
     "sphinx.ext.githubpages",
     "sphinx_lesson",
+    "myst_nb",
     # remove once sphinx_rtd_theme updated for contrast and accessibility:
     "sphinx_rtd_theme_ext_color_contrast",
     "sphinx.ext.todo",
@@ -111,26 +112,3 @@ html_context = {
 #    #'matplotlib': ('https://matplotlib.org/', None),
 #    'seaborn': ('https://seaborn.pydata.org/', None),
 # }
-
-# add few new directives
-from sphinx_lesson.directives import _BaseCRDirective
-
-
-class SignatureDirective(_BaseCRDirective):
-    extra_classes = ["toggle-shown", "dropdown"]
-
-
-class ParametersDirective(_BaseCRDirective):
-    extra_classes = ["dropdown"]
-
-
-class TypealongDirective(_BaseCRDirective):
-    extra_classes = ["toggle-shown", "dropdown"]
-
-
-DIRECTIVES = [SignatureDirective, ParametersDirective, TypealongDirective]
-
-
-def setup(app):
-    for obj in DIRECTIVES:
-        app.add_directive(obj.cssname(), obj)
