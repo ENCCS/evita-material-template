@@ -56,39 +56,6 @@
     background: #714884;
 }
 
-/* signature */
-.rst-content .signature {
-    background: rgba(217, 240, 211, 0.3);
-}
-.rst-content .signature > .admonition-title {
-    background: #21634b;
-}
-.rst-content .signature > .admonition-title::before {
-    content: "\01F527";
-}
-
-/* parameters */
-.rst-content .parameters {
-    background: rgba(217, 240, 211, 0.0);
-}
-.rst-content .parameters > .admonition-title {
-    background: #21634b;
-}
-.rst-content .parameters > .admonition-title::before {
-    content: "\01F4BB";
-}
-
-/* typealong */
-.rst-content .typealong {
-    background: rgba(221, 221, 221, 0.3);
-}
-.rst-content .typealong > .admonition-title {
-    background: rgba(89, 89, 89, 1.0);
-}
-.rst-content .typealong > .admonition-title::before {
-    content: "\02328";
-}
-
 /* Equation numbers to the right */
 .math {
     text-align: left;
