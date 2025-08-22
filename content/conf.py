@@ -42,10 +42,10 @@ extensions = [
 
 # Settings for myst_nb:
 # https://myst-nb.readthedocs.io/en/latest/use/execute.html#triggering-notebook-execution
-# jupyter_execute_notebooks = "off"
-# jupyter_execute_notebooks = "auto"   # *only* execute if at least one output is missing.
-# jupyter_execute_notebooks = "force"
-nb_execution_mode = "cache"
+nb_execution_mode = "off"
+# nb_execution_mode = "auto"   # *only* execute if at least one output is missing.
+# nb_execution_mode = "force"
+# nb_execution_mode = "cache"
 
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 myst_enable_extensions = [
@@ -82,7 +82,7 @@ html_favicon = "img/favicon.ico"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 html_css_files = ["overrides.css"]
 
 # HTML context:
