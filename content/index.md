@@ -35,6 +35,7 @@ episodes/Python-HPDA-0-SoftwareSetup
 
 episodes/Python-HPDA-1-Motivation
 episodes/Python-HPDA-2-EfficientArrayComputing
+quiz/Python-HPDA-2-EfficientArrayComputing
 
 :::
 
