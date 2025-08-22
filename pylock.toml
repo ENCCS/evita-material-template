@@ -549,6 +549,13 @@ sdist = { url = "https://files.pythonhosted.org/packages/1e/5c/14f0852233d60d30b
 wheels = [{ url = "https://files.pythonhosted.org/packages/53/38/6182d63f39428821e705e86fba61704fc69769a24ca5a9578c2c04986c9a/jupyterlab-4.4.6-py3-none-any.whl", upload-time = 2025-08-15T11:44:11Z, size = 12268564, hashes = { sha256 = "e877e930f46dde2e3ee9da36a935c6cd4fdb15aa7440519d0fde696f9fadb833" } }]
 
 [[packages]]
+name = "jupyterlab-myst"
+version = "2.4.2"
+index = "https://pypi.org/simple"
+sdist = { url = "https://files.pythonhosted.org/packages/5c/dc/4034f4f4e60e484094b96cde80bd3a387d5d1ad1d43e9918f6c5fde297b7/jupyterlab_myst-2.4.2.tar.gz", upload-time = 2024-04-26T13:02:28Z, size = 12754014, hashes = { sha256 = "1b06de66d20dc3a865b07d37f54bff8b4ed01501999cc0683f336f0bcb8c6902" } }
+wheels = [{ url = "https://files.pythonhosted.org/packages/ac/7c/98ad14b3cf7a7987d3c6ef5fc83609458739f28a1a34a91a9bb1b12c5f8a/jupyterlab_myst-2.4.2-py3-none-any.whl", upload-time = 2024-04-26T13:02:25Z, size = 2689537, hashes = { sha256 = "2aa406d4754dcd2ec4fe749b6a2e15f0bc8a6c5c8f6b549419583715d8146230" } }]
+
+[[packages]]
 name = "jupyterlab-pygments"
 version = "0.3.0"
 index = "https://pypi.org/simple"
