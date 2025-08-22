@@ -21,14 +21,14 @@ This lesson will give an overview of working with research data in Python using 
 - [Python Performance Workshop](https://enccs.github.io/python-perf/)
 - ...
 
-```{toctree}
+:::{toctree}
 :caption: Software setup
 :maxdepth: 1
 
 episodes/Python-HPDA-0-SoftwareSetup
-```
+:::
 
-```{toctree}
+:::{toctree}
 :caption: Lesson episodes
 :maxdepth: 1
 
@@ -36,16 +36,16 @@ episodes/Python-HPDA-0-SoftwareSetup
 episodes/Python-HPDA-1-Motivation
 episodes/Python-HPDA-2-EfficientArrayComputing
 
-```
+:::
 
-```{toctree}
+:::{toctree}
 :caption: Reference
 :maxdepth: 1
 
 
 reference/3-jupyter-notebook-styling
 
-```
+:::
 
 ## Learning outcomes
 
@@ -74,16 +74,16 @@ Before teaching this module, the instructor is expected to set up the programmin
 
 The HPC cluster used for this course should be equipped with modern NVIDIA GPUs that support CUDA programming. It is recommended that the cluster allocates a minimum of 20 GPU hours per person throughout the course duration. This allocation ensures sufficient time for code development, testing, and running computationally intensive workloads. A minimum of 16 GB GPU memory is recommended to handle large datasets and complex computations efficiently.
 
-```{admonition} Credit
+:::{admonition} Credit
 :class: warning
 
 Don't forget to check out additional [**course materials**](https://www.evitahpc.eu/) from XXX. Please [**contact us**](https://www.evitahpc.eu/) if you want to reuse these course materials in your teaching. You can also join the [**XXX channel**](https://www.evitahpc.eu/) to share your experience and get more help from the community.
 
 
-```
+:::
 
-```{admonition} Licensing
+:::{danger} Licensing
 :class: danger
 
 Copyright © 2025 XXX. This material is released by XXX under the Creative Commons Attribution 4.0 International (CC BY 4.0). These materials may include references to hardware and software developed by other entities; all applicable licensing and copyrights apply.
-```
+:::
