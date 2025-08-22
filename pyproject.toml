@@ -1,0 +1,23 @@
+[project]
+name = "evita-material-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "myst-nb>=1.3.0",
+    "sphinx>=8.2.3",
+    "sphinx-lesson>=0.8.16",
+    "sphinx-rtd-theme>=3.0.2",
+    "sphinx-rtd-theme-ext-color-contrast>=0.3.2",
+]
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.4.6",
+    "jupyterlab-myst>=2.4.2",
+    "matplotlib>=3.10.5",
+    "numpy>=2.3.2",
+    "pandas>=2.3.2",
+    "scipy>=1.16.1",
+]
