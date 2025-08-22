@@ -44,7 +44,7 @@ quiz/Python-HPDA-2-EfficientArrayComputing
 :maxdepth: 1
 
 
-reference/3-jupyter-notebook-styling
+reference/for-course-authors
 
 :::
 
