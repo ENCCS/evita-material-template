@@ -2,92 +2,104 @@
 
 
 
-## Documents requested from course developers
+## Required documents from course developers
+
+Course developers are expected to provide the following:
 - `index.md`
 - `instructor-guide.md`
 - `reference-for-learners.md`
-- a `episodes` directory containing
-	- Jupyter notebooks (also possible to provide Markdown and reStructuredText files)
-	- images used in jupyter notebooks (Markdown and reStructuredText files)
-	- code examples that are included in jupyter notebooks (Markdown and reStructuredText files)
-	- qustions and quiz for summative assessment
-	- slides for each episode for teaching
+- An episodes directory containing
+	- Jupyter notebooks (Markdown and reStructuredText files are also acceptable)
+	- Images used in the notebooks
+	- Code examples referenced in the notebooks
+	- Questions and quizzes for summative assessment
+	- Slides for each episode
 
 
 
 ## The `index.md` file
-- title of this module
-- general description of this module (1-3 paragraphs)
-- **prerequisites**
-	- (preparatory) reading materials before taking this module in a course
-- links to module episodes in correct order
-	- must use the `toctree` syntax
-	- at least three sessions should be provided:
-		- 1) **Software setup** to describe how to setup programming environments
-		- 2) **Lesson episodes** to include all episodes for teaching
-		- 3) **Reference** to include notes for instructors and additional references
-- **Learning outcomes** according to strict guide (Blooms taxonomy *etc.*) 
-	- the target learners of this module and practical skills that could be mastered after taking this module (course)
-	- **links to leaves in the skill tree**
-	- optionally, also mention other related topics which are NOT covered in the course and link them to the skill tree
-- **Credit**
-	- <mark>should be reformulated asap</mark>
-- **License**
-	- <mark>should be reformulated asap</mark>
+
+The `index.md` file should include:
+- Title of this module
+- General description (1–3 paragraphs)
+- **Prerequisites**
+	- Reading materials or other preparation required before starting this module
+- Links to module episodes in correct order
+	- Must use the toctree syntax
+	- At least three sessions should be included:
+		- 1) **Software setup** -- instructions for configuring the programming environment
+		- 2) **Lesson episodes** -- teaching content
+		- 3) **Reference** -- notes for instructors and additional resources
+- **Learning outcomes** (following Bloom’s Taxonomy guidelines)
+	- Target learners and practical skills they will gain
+	- **links to relevant leaves in the skill tree**
+	- Optionally, mention related topics not covered in this module and link them to the skill tree
+- **Credit** (to be reformulated ASAP)
+- **License** (to be reformulated ASAP)
 
 
 
-## One Jupyter notebook for **Setting Up Programming Environment**
-- it is possible to provide Markdown and reStructuredText files
-- provide at least two sessions to setup programming environment
-- **local installation of programming environment**
-	- provide specific version of used packages (such as a `requirements.txt` or a `environment.yml`)
-	- detailed instructions for win, mac, and linux users
-	- it is also possible to setup container
-- **setting up programming environment on HPC cluster**
-	- instructions valid for any specific supercomputer, preferably an EuroHPC cluster
-	- provide specific version of used packages (such as a `requirements.txt` or a `environment.yml`)
-	- it is also possible to setup container
-	- example SLURM job batch script for running the hands-on exercises
-- if a dataset is needed for exercises, provide dataset if it is smaller than 100 MB, otherwise provide instructions to download it from external data archives
+## Jupyter Notebook: **Setting Up Programming Environment**
+
+Provide a dedicated notebook (Markdown or reStructuredText also acceptable) with at least two sessions covering environment setup:
+- **Local installation**
+	- Specify package versions (*e.g.*, via `requirements.txt` or `environment.yml`)
+	- Detailed setup instructions for Windows, macOS, and Linux users
+	- Optionally provide a containerized setup
+- **HPC cluster installation**
+	- Instructions valid for a specific supercomputer (preferably an EuroHPC cluster)
+	- Specify package versions (as above)
+	- Optionally provide a containerized setup
+	- Example SLURM batch script for running exercises
+- **Datasets**
+	- If a dataset is required and smaller than 100 MB, include it directly
+	- If larger, provide instructions for downloading it from an external archive
 
 
 
-## Jupyter notebooks for teaching materials 
-- a general description of this episode
-- **objectives** for learners of this episode
-- **instructor-note** provide suggested time for teaching, code demonstration, code type alone, exercises, *etc.*
-- at least one `Discussion`, `Code for demonstration` or `Exercise` (and the corresponding `Solution`) in between major sections within the episode
-- some notifications like `Note`, `Caution`, `Attention` should be provided
-	- more notifications are provided at Jupyter Notebook **Reference for course authors**
-- images should be included to illustrate certain concepts, making them easier to understand
-	- these images should be stored at another directory **images**
-- if videos are required to illustrate a continuous process, the developer should provide them directly.
-	- alternatively, links to relevant YouTube videos may be supplied
-- code examples are expected to be available at a **code** folder and provide links to these examples
-- **Keypoints** at the end summarizing this episode 
-- **See also** to provide additional materials for reading
+## Jupyter Notebooks for Teaching Materials
+
+Each episode should include:
+- A general description
+- **Objectives** for learners
+- **Instructor note** (suggested time allocation, code demos, exercises, etc.)
+- At least one of the following between major sections:
+	- `Discussion`
+	- `Code for demonstration`
+	- `Exercise` (with corresponding `Solution`)
+- Highlighted notifications such as `Note`, `Caution`, `Attention`, *etc.*
+	- See the Jupyter Notebook **Reference for Course Developers** for more options
+- **Images** to illustrate key concepts (stored in an images directory)
+- **Videos** if needed to demonstrate continuous processes
+	- Videos may be provided directly or linked from YouTube
+- **Code examples** stored in a code directory, with references in the notebook
+- **Keypoints** at the end of the episode, summarizing its content
+- **See also** with additional reading materials
 
 
 
 ## Quiz
-- Summative assessment: provide questions which can be tested either in a supervised or unsupervised setting
-- Format: 
-	- Multiple choice questions
+
+- Provide summative assessment questions suitable for supervised or unsupervised evaluation
+- Formats may include:
+	- Multiple-choice questions
 	- Coding tasks
 
 
 
-## Instructor guide
-- teaching hours and number of participants
-- mode of teaching and exercising
-- hardware requirements, HPC
-- learner personas
-- ...
+## Instructor Guide
+
+The instructor guide should include:
+- Recommended teaching hours and participant numbers
+- Mode of teaching and exercises
+- Hardware requirements (including HPC if applicable)
+- Learner personas
+- Additional teaching recommendations
 
 
 
-## Reference for learners
-- Glossary
-- External resources for further reading
+## Reference for Learners
+
+- Glossary of terms
+- External resources for further study
 
