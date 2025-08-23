@@ -34,10 +34,11 @@ extensions = [
     # githubpages just adds a .nojekyll file
     "sphinx.ext.githubpages",
     "sphinx_lesson",
+    "sphinx_embedpdf.sphinx_embedpdf",
     "myst_nb",
     # remove once sphinx_rtd_theme updated for contrast and accessibility:
     "sphinx_rtd_theme_ext_color_contrast",
-    "sphinx.ext.todo",
+    "sphinx.ext.todo"
 ]
 
 # Settings for myst_nb:

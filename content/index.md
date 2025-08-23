@@ -11,8 +11,8 @@ This lesson will give an overview of working with research data in Python using 
 - Basic experience with Python
 - Basic experience in working in a Linux-like terminal
 - Some prior experience in working with large or small datasets
-
 :::
+
 
 :::{toctree}
 :caption: Software setup
@@ -21,27 +21,35 @@ This lesson will give an overview of working with research data in Python using 
 episodes/Python-HPDA-0-SoftwareSetup
 :::
 
+
 :::{toctree}
 :caption: Lesson episodes
 :maxdepth: 1
 
-
 episodes/Python-HPDA-1-Motivation
 episodes/Python-HPDA-2-EfficientArrayComputing
-quiz/Python-HPDA-2-EfficientArrayComputing
-
+episodes/quiz/quiz_in_episodes
 :::
+
 
 :::{toctree}
 :caption: Reference
 :maxdepth: 1
 
-
-reference/instructor-guide
-reference/for-learners
-reference/for-course-authors
-
+instructor-guide
+reference-for-learners
 :::
+
+
+
+:::{toctree}
+:caption: Note for course developers
+:maxdepth: 1
+
+note_for_course_developers/note
+:::
+
+
 
 ## Learning outcomes
 
@@ -55,13 +63,15 @@ By the end of a workshop covering this lesson, learners should:
 - ...
 
 
+
 :::{admonition} Credit
 :class: warning
 
 Don't forget to check out additional [**course materials**](https://www.evitahpc.eu/) from XXX. Please [**contact us**](https://www.evitahpc.eu/) if you want to reuse these course materials in your teaching. You can also join the [**XXX channel**](https://www.evitahpc.eu/) to share your experience and get more help from the community.
 
-
 :::
+
+
 
 :::{admonition} License
 :class: danger
