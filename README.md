@@ -1,44 +1,93 @@
-# From Jupyter Notebooks to Markdown files and then Sphinx rendering
+# Note for Course Developers Using This Template
 
 
-## Creating a GitHub repository
 
-- Go to [Sphinx template](https://github.com/ENCCS/sphinx-lesson-template)
-- Click the button `Use this template` to `Create a new repository`
-- Create static webpage from this GitHub repository
-- Go to `evita-material-template/content` directory
-	- remove `guide.md`, `guide.rst-if-wanted`, `index.md`, `index.rst-if-wanted`, `quick-reference.md` and `quick-reference.rst-if-wanted`
-	- in practice you have a `conf.py` file and two directories (`_static_` and `img`) in the `content` folder
-
-
-## Materials from course developer(s)
-
-- Course developers should provide relevant materials
-	- a `module-ipynb` directory containing all Jupyter notebooks
-		- `Python-HPDA.ipynb`, this is the main Jupyter NB for this module
-		- `Python-HPDA-0-SoftwareSetup.ipynb`, this is the Jupyter NB to setup programming environment
-		- `Python-HPDA-1-Motivation.ipynb`, this is one Jupyter NB for lecturing
-		- `Python-HPDA-2-EfficientArrayComputing.ipynb`, this is another Jupyter NB for lecturing
-	- a `module-code` directory containing all code examples for this module
-	- a `module-images` directory containing all images for this module
-- Update `conf.py` file with practical info for this module
-	- replace `LESSON NAME` with `High Performance Data Analytics in Python`
-	- replace `copyright = "2021, The contributors"` with something
-	- replace `author = "The contributors"` with something
-	- replace `github_user = "ENCCS"` with something
+## Documents requested from course developers
+- `index.md`
+- `instructor-guide.md`
+- `reference-for-learners.md`
+- a `episodes` directory containing
+	- Jupyter notebooks (also possible to provide Markdown and reStructuredText files)
+	- images used in jupyter notebooks (Markdown and reStructuredText files)
+	- code examples that are included in jupyter notebooks (Markdown and reStructuredText files)
+	- qustions and quiz for summative assessment
+	- slides for each episode for teaching
 
 
-## Processing Jupyter NBs to Markdown files
 
-- put the logo file `evita.png` at `img` directory
-	- replace `html_logo = "img/ENCCS.jpg"` in `conf.py` file to `html_logo = "img/evita.png"`
-- create a `00_convert_ipynb_to_md` directory with correpondent files
-	- four Python scripts in this directory
-	- `cd 00_convert_ipynb_to_md/`
-	- run `jupyter nbconvert ../module-ipynb/Python*.ipynb --to markdown` to all Jupyter NBs to raw Markdown documents
-	- run `cp ../module-ipynb/Python*.md .`
-	- run `python3 rename_md.py Python` to rename all Markdown files
-	- run `python3 main.py Python-HPDA-raw.md` with the main Jupyter NB as an argument
-	- run `cp Python*[!-raw].md index.md 3-*.md ../`
-- upload relevant files to the repository and commit changes
+## The `index.md` file
+- title of this module
+- general description of this module (1-3 paragraphs)
+- **prerequisites**
+	- (preparatory) reading materials before taking this module in a course
+- links to module episodes in correct order
+	- must use the `toctree` syntax
+	- at least three sessions should be provided:
+		- 1) **Software setup** to describe how to setup programming environments
+		- 2) **Lesson episodes** to include all episodes for teaching
+		- 3) **Reference** to include notes for instructors and additional references
+- **Learning outcomes** according to strict guide (Blooms taxonomy *etc.*) 
+	- the target learners of this module and practical skills that could be mastered after taking this module (course)
+	- **links to leaves in the skill tree**
+	- optionally, also mention other related topics which are NOT covered in the course and link them to the skill tree
+- **Credit**
+	- <mark>should be reformulated asap</mark>
+- **License**
+	- <mark>should be reformulated asap</mark>
+
+
+
+## One Jupyter notebook for **Setting Up Programming Environment**
+- it is possible to provide Markdown and reStructuredText files
+- provide at least two sessions to setup programming environment
+- **local installation of programming environment**
+	- provide specific version of used packages (such as a `requirements.txt` or a `environment.yml`)
+	- detailed instructions for win, mac, and linux users
+	- it is also possible to setup container
+- **setting up programming environment on HPC cluster**
+	- instructions valid for any specific supercomputer, preferably an EuroHPC cluster
+	- provide specific version of used packages (such as a `requirements.txt` or a `environment.yml`)
+	- it is also possible to setup container
+	- example SLURM job batch script for running the hands-on exercises
+- if a dataset is needed for exercises, provide dataset if it is smaller than 100 MB, otherwise provide instructions to download it from external data archives
+
+
+
+## Jupyter notebooks for teaching materials 
+- a general description of this episode
+- **objectives** for learners of this episode
+- **instructor-note** provide suggested time for teaching, code demonstration, code type alone, exercises, *etc.*
+- at least one `Discussion`, `Code for demonstration` or `Exercise` (and the corresponding `Solution`) in between major sections within the episode
+- some notifications like `Note`, `Caution`, `Attention` should be provided
+	- more notifications are provided at Jupyter Notebook **Reference for course authors**
+- images should be included to illustrate certain concepts, making them easier to understand
+	- these images should be stored at another directory **images**
+- if videos are required to illustrate a continuous process, the developer should provide them directly.
+	- alternatively, links to relevant YouTube videos may be supplied
+- code examples are expected to be available at a **code** folder and provide links to these examples
+- **Keypoints** at the end summarizing this episode 
+- **See also** to provide additional materials for reading
+
+
+
+## Quiz
+- Summative assessment: provide questions which can be tested either in a supervised or unsupervised setting
+- Format: 
+	- Multiple choice questions
+	- Coding tasks
+
+
+
+## Instructor guide
+- teaching hours and number of participants
+- mode of teaching and exercising
+- hardware requirements, HPC
+- learner personas
+- ...
+
+
+
+## Reference for learners
+- Glossary
+- External resources for further reading
 
