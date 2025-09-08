@@ -1,0 +1,71 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Evita Module Template
+message: >-
+  If you use this module, please cite it using the metadata
+  from this file.
+type: software
+authors:
+  - given-names: Jane
+    family-names: Doe
+    email: jane.doe@example.com
+    affiliation: Acme University
+    orcid: 'https://orcid.org/1234-5678-0910-1112'
+  - given-names: John
+    family-names: Doe
+    email: john.doe@example.com
+    affiliation: Foo Institute
+    orcid: 'https://orcid.org/1211-1009-8765-4321'
+identifiers:
+  - type: url
+    value: >-
+      https://www.hpc-certification.org/wiki/skill-tree/bda/2/6/b
+    description: BDA2.6 Dask
+  - type: url
+    value: >-
+      https://www.hpc-certification.org/wiki/skill-tree/sd/1/1/b
+    description: SD1.1 Programming Languages
+  - type: url
+    value: >-
+      https://www.hpc-certification.org/wiki/skill-tree/sd/1/3/b
+    description: SD1.3 Efficient Algorithms and Data Structures
+  - type: doi
+    value: 10.1234/zenodo.4321
+    description: Module archive on Zenodo
+repository-code: 'https://code.europa.eu/evita/modules/'
+url: 'https://www.evitahpc.eu/'
+abstract: >-
+  Scientists, engineers and professionals from many sectors
+  are seeing an enormous growth in the size and number of
+  datasets relevant to their domains. Professional titles
+  have emerged to describe specialists working with data,
+  such as data scientists and data engineers, but also other
+  experts are finding it necessary to learn tools and
+  techniques to work with big data. Typical tasks include
+  preprocessing, analysing, modeling and visualising data.
+
+
+  Python is an industry-standard programming language for
+  working with data on all levels of the data analytics
+  pipeline. This is in large part because of the rich
+  ecosystem of libraries ranging from generic numerical
+  libraries to special-purpose and/or domain-specific
+  packages, often supported by large developer communities
+  and stable funding sources.
+
+
+  This lesson will give an overview of working with research
+  data in Python using general libraries for storing,
+  processing, analysing and sharing data. The focus is on
+  high performance. After covering tools for performant
+  processing on single workstations the focus shifts to
+  profiling and optimising, parallel and distributed
+  computing.
+keywords:
+  - python
+  - HPDA
+license: CC-BY-4.0
+version: '2025.09'
+date-released: '2025-09-30'
