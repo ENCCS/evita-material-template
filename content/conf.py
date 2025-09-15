@@ -10,9 +10,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('.'))
+
+import sphinx_evita
 
 
 # -- Project information -----------------------------------------------------
@@ -37,7 +39,7 @@ extensions = [
     "myst_nb",
     # remove once sphinx_rtd_theme updated for contrast and accessibility:
     "sphinx_rtd_theme_ext_color_contrast",
-    "sphinx.ext.todo"
+    "sphinx.ext.todo",
 ]
 
 # Settings for myst_nb:
@@ -113,3 +115,6 @@ html_context = {
 #    #'matplotlib': ('https://matplotlib.org/', None),
 #    'seaborn': ('https://seaborn.pydata.org/', None),
 # }
+
+def setup(app):
+    sphinx_evita.setup(app)
