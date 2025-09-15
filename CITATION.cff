@@ -56,7 +56,7 @@ abstract: >-
   and stable funding sources.
 
 
-  This lesson will give an overview of working with research
+  This module will give an overview of working with research
   data in Python using general libraries for storing,
   processing, analysing and sharing data. The focus is on
   high performance. After covering tools for performant
