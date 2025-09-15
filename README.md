@@ -37,7 +37,7 @@ The `index.md` file should include:
 
 
 
-## Jupyter Notebook: **Setting Up Programming Environment**
+## Jupyter notebook: **setting up programming environment**
 
 Provide a dedicated notebook (Markdown or reStructuredText also acceptable) with at least two sessions covering environment setup:
 - **Local installation**
@@ -55,7 +55,7 @@ Provide a dedicated notebook (Markdown or reStructuredText also acceptable) with
 
 
 
-## Jupyter Notebooks for Teaching Materials
+## Jupyter notebooks for teaching materials
 
 Each episode should include:
 - A general description
@@ -85,7 +85,7 @@ Each episode should include:
 
 
 
-## Instructor Guide
+## Instructor guide
 
 The instructor guide should include:
 - Recommended teaching hours and participant numbers
