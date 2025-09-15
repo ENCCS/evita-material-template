@@ -1,10 +1,8 @@
-# Note for Course Developers Using This Template
+# Note for module developers using this template
 
+## Required documents from module developers
 
-
-## Required documents from course developers
-
-Course developers are expected to provide the following:
+Module developers are expected to provide the following:
 - `index.md`
 - `instructor-guide.md`
 - `reference-for-learners.md`
@@ -24,22 +22,22 @@ The `index.md` file should include:
 - General description (1–3 paragraphs)
 - **Prerequisites**
 	- Reading materials or other preparation required before starting this module
-- Links to module episodes in correct order
+- Links to episodes in correct order
 	- Must use the toctree syntax
-	- At least three sessions should be included:
+	- At least three sections should be included:
 		- 1) **Software setup** -- instructions for configuring the programming environment
-		- 2) **Lesson episodes** -- teaching content
+		- 2) **Episodes** -- teaching content of the module divided into smaller units called episodes
 		- 3) **Reference** -- notes for instructors and additional resources
 - **Learning outcomes** (following Bloom’s Taxonomy guidelines)
 	- Target learners and practical skills they will gain
-	- **links to relevant leaves in the skill tree**
+	- **Links to relevant leaves in the skill tree**
 	- Optionally, mention related topics not covered in this module and link them to the skill tree
 - **Credit** (to be reformulated ASAP)
 - **License** (to be reformulated ASAP)
 
 
 
-## Jupyter Notebook: **Setting Up Programming Environment**
+## Jupyter notebook: **setting up programming environment**
 
 Provide a dedicated notebook (Markdown or reStructuredText also acceptable) with at least two sessions covering environment setup:
 - **Local installation**
@@ -57,7 +55,7 @@ Provide a dedicated notebook (Markdown or reStructuredText also acceptable) with
 
 
 
-## Jupyter Notebooks for Teaching Materials
+## Jupyter notebooks for teaching materials
 
 Each episode should include:
 - A general description
@@ -68,7 +66,7 @@ Each episode should include:
 	- `Code for demonstration`
 	- `Exercise` (with corresponding `Solution`)
 - Highlighted notifications such as `Note`, `Caution`, `Attention`, *etc.*
-	- See the Jupyter Notebook **Reference for Course Developers** for more options
+	- See the Jupyter Notebook titled **Reference for module developers** for more options
 - **Images** to illustrate key concepts (stored in an images directory)
 - **Videos** if needed to demonstrate continuous processes
 	- Videos may be provided directly or linked from YouTube
@@ -87,7 +85,7 @@ Each episode should include:
 
 
 
-## Instructor Guide
+## Instructor guide
 
 The instructor guide should include:
 - Recommended teaching hours and participant numbers
