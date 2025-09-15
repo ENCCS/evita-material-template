@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference for module authors &mdash; High Performance Data Analytics in Python  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/overrides.css?v=47adfc69" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=187304be"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="prev" title="Reference for learners" href="../../reference-for-learners/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../" class="icon icon-home">
+            High Performance Data Analytics in Python
+              <img src="../../_static/evita.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../episodes/Python-HPDA-0-SoftwareSetup/">Setting Up Programming Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../episodes/Python-HPDA-1-Motivation/">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../episodes/Python-HPDA-2-EfficientArrayComputing/">Efficient Array Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../episodes/Python-HPDA-2-EfficientArrayComputing-markdown/">Efficient Array Computing (in Markdown)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../episodes/quiz/quiz_in_episodes/">Quiz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../episodes/Example-PDF-markdown/">Example episode embedding a PDF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../instructor-guide/">Instructor guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference-for-learners/">Reference for learners</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Note for module developers</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference for module authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#directives">Directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#all-other-directives">All other directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-addition-keywords">Define addition keywords</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#badges">Badges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#providing-system-or-language-specific-course-instructions">Providing system or language-specific course instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#embed-pdf-slides">Embed PDF slides</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">High Performance Data Analytics in Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reference for module authors</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ENCCS/evita-material-template/blob/main/content/note_for_module_developers/note.ipynb" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reference-for-module-authors">
+<h1>Reference for module authors<a class="headerlink" href="#reference-for-module-authors" title="Link to this heading"></a></h1>
+<section id="directives">
+<h2>Directives<a class="headerlink" href="#directives" title="Link to this heading"></a></h2>
+<p>There are some directives or admonitions defined in
+<a class="reference external" href="https://mystmd.org/guide/admonitions">MyST markdown</a> and
+<a class="reference external" href="https://coderefinery.github.io/sphinx-lesson/directives/">sphinx-lesson</a>
+to highlight blocks within the course materials. Some of these are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">discussion</span></code>, <code class="docutils literal notranslate"><span class="pre">demo</span></code>, <code class="docutils literal notranslate"><span class="pre">exercises</span></code>, <code class="docutils literal notranslate"><span class="pre">solution</span></code>, <code class="docutils literal notranslate"><span class="pre">homework</span></code>, …</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">note</span></code>, <code class="docutils literal notranslate"><span class="pre">hint</span></code>, <code class="docutils literal notranslate"><span class="pre">important</span></code>, <code class="docutils literal notranslate"><span class="pre">attention</span></code>, <code class="docutils literal notranslate"><span class="pre">caution</span></code>,<code class="docutils literal notranslate"><span class="pre">warning</span></code>, <code class="docutils literal notranslate"><span class="pre">danger</span></code>, …</p></li>
+</ul>
+<p>These directives are extensions on top of the vanilla Markdown syntax.</p>
+<p>For example, when a markdown cell in a Jupyter notebook contains the following:</p>
+<div class="dropdown instructor-note admonition" id="instructor-note-0">
+<p class="admonition-title">MyST markdown syntax</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:::{discussion} How large is your data?
+
+- How large is the data you are working with?
+- Are you experiencing performance bottlenecks when you try to analyse it?
+
+:::
+</pre></div>
+</div>
+</div>
+<p>it renders into HTML while appears as below:</p>
+<div class="admonition-how-large-is-your-data discussion important admonition" id="discussion-0">
+<p class="admonition-title">How large is your data?</p>
+<ul class="simple">
+<li><p>How large is the data you are working with?</p></li>
+<li><p>Are you experiencing performance bottlenecks when you try to analyse it?</p></li>
+</ul>
+</div>
+</section>
+<section id="all-other-directives">
+<h2>All other directives<a class="headerlink" href="#all-other-directives" title="Link to this heading"></a></h2>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>learning objective 1</p></li>
+<li><p>learning objective 2</p></li>
+</ul>
+</div>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>What does the tool X do?</p></li>
+<li><p>How can we use tool X in an HPC cluster?</p></li>
+</ul>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Do not remove the following line.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Do not remove the following line.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not remove the following line.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Here is a danger!</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>Here is an error!</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>In this exercise, you can use A instead of B.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In this exercise, you can use A instead of B.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You should use the latest version of Python.</p>
+</div>
+<div class="admonition-exercise exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise</p>
+<p>Description of exercise</p>
+<ul class="simple">
+<li><p>Do this</p></li>
+<li><p>then do this</p></li>
+<li><p>finally observe what happens when you do this.</p></li>
+</ul>
+</div>
+<div class="dropdown exercise important admonition" id="exercise-1">
+<p class="admonition-title">Exercise with a “Click to show” button</p>
+<p>Description of exercise</p>
+<ul class="simple">
+<li><p>Do this</p></li>
+<li><p>then do this</p></li>
+<li><p>finally observe what happens when you do this…do this…</p></li>
+</ul>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<p>Here is the solution for above exercises.</p>
+</div>
+<div class="admonition-homework homework important admonition" id="homework-0">
+<p class="admonition-title">Homework</p>
+<p>Here are the homework assignments for this episode.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here we emphasize an important point from the section.</p>
+</div>
+<div class="admonition-demo demo admonition" id="demo-0">
+<p class="admonition-title">Demo</p>
+<p>Code for demonstration</p>
+</div>
+<div class="admonition-type-along type-along important admonition" id="type-along-0">
+<p class="admonition-title">Type-Along</p>
+<p>Code for a type-along live-coding session</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">this</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>summary 1</p></li>
+<li><p>summary 2</p></li>
+</ul>
+</div>
+</section>
+<section id="define-addition-keywords">
+<h2>Define addition keywords<a class="headerlink" href="#define-addition-keywords" title="Link to this heading"></a></h2>
+<p>To do:</p>
+<ul class="simple">
+<li><p>references, …</p></li>
+<li><p>suggestion, recommendation, …</p></li>
+</ul>
+<p>For now we reuse <code class="docutils literal notranslate"><span class="pre">admonition</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title">References</p>
+<p>publications and webpages for references</p>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Recommendation</p>
+<p>It is recommended to use the CUDA version &gt; 10.0.</p>
+</div>
+</section>
+<section id="badges">
+<h2>Badges<a class="headerlink" href="#badges" title="Link to this heading"></a></h2>
+<p>Here is one badge after we publish this module at Zenodo.</p>
+<p><a class="reference external" href="https://doi.org/10.5281/zenodo.14844443"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.14844443.svg" /></a></p>
+<p>We can design other badges with different colors. See: <a class="reference external" href="https://shields.io/badges">https://shields.io/badges</a></p>
+</section>
+<section id="providing-system-or-language-specific-course-instructions">
+<h2>Providing system or language-specific course instructions<a class="headerlink" href="#providing-system-or-language-specific-course-instructions" title="Link to this heading"></a></h2>
+<p>Using <code class="docutils literal notranslate"><span class="pre">tabs</span></code> and <code class="docutils literal notranslate"><span class="pre">group-tab</span></code> directives we can allow the learner to focus on a single group of instructions. Here is an example below<a class="footnote-reference brackets" href="#coderef" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<div class="dropdown instructor-note admonition" id="instructor-note-1">
+<p class="admonition-title">MyST markdown syntax</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:::::{</span><span class="n">admonition</span><span class="p">}</span> <span class="n">Testing</span> <span class="n">frameworks</span>
+<span class="n">Language</span><span class="o">-</span><span class="n">specific</span> <span class="n">instructions</span>
+
+<span class="p">::::{</span><span class="n">tabs</span><span class="p">}</span>
+<span class="p">:::{</span><span class="n">group</span><span class="o">-</span><span class="n">tab</span><span class="p">}</span> <span class="n">Python</span>
+
+<span class="n">The</span> <span class="n">suggested</span> <span class="n">solutions</span> <span class="n">below</span> <span class="n">use</span> <span class="n">pytest</span><span class="o">.</span>
+<span class="p">:::</span>
+
+<span class="p">:::{</span><span class="n">group</span><span class="o">-</span><span class="n">tab</span><span class="p">}</span> <span class="n">C</span><span class="o">++</span>
+
+<span class="n">The</span> <span class="n">suggested</span> <span class="n">solutions</span> <span class="n">below</span> <span class="n">use</span> <span class="n">Catch2</span><span class="o">.</span>
+<span class="p">:::</span>
+
+<span class="p">:::{</span><span class="n">group</span><span class="o">-</span><span class="n">tab</span><span class="p">}</span> <span class="n">R</span>
+
+<span class="n">The</span> <span class="n">suggested</span> <span class="n">solutions</span> <span class="n">below</span> <span class="n">use</span> <span class="n">testthat</span><span class="o">.</span>
+<span class="p">:::</span>
+
+<span class="p">:::{</span><span class="n">group</span><span class="o">-</span><span class="n">tab</span><span class="p">}</span> <span class="n">Julia</span>
+
+<span class="n">The</span> <span class="n">suggested</span> <span class="n">solutions</span> <span class="n">below</span> <span class="n">use</span> <span class="n">Test</span><span class="o">.</span>
+<span class="p">:::</span>
+
+<span class="p">:::{</span><span class="n">group</span><span class="o">-</span><span class="n">tab</span><span class="p">}</span> <span class="n">Fortran</span>
+
+<span class="n">The</span> <span class="n">suggested</span> <span class="n">solutions</span> <span class="n">below</span> <span class="n">use</span> <span class="n">pFUnit</span><span class="o">.</span>
+<span class="p">:::</span>
+<span class="p">::::</span>
+<span class="p">:::::</span>
+</pre></div>
+</div>
+</div>
+<p>which renders as follows:</p>
+<div class="admonition-testing-frameworks admonition">
+<p class="admonition-title">Testing frameworks</p>
+<p>Language-specific instructions</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button><button aria-controls="panel-0-Ug==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Ug==" name="Ug==" role="tab" tabindex="-1">R</button><button aria-controls="panel-0-SnVsaWE=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-SnVsaWE=" name="SnVsaWE=" role="tab" tabindex="-1">Julia</button><button aria-controls="panel-0-Rm9ydHJhbg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tab" tabindex="-1">Fortran</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The suggested solutions below use pytest.</p>
+</div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><p>The suggested solutions below use Catch2.</p>
+</div><div aria-labelledby="tab-0-Ug==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Ug==" name="Ug==" role="tabpanel" tabindex="0"><p>The suggested solutions below use testthat.</p>
+</div><div aria-labelledby="tab-0-SnVsaWE=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-SnVsaWE=" name="SnVsaWE=" role="tabpanel" tabindex="0"><p>The suggested solutions below use Test.</p>
+</div><div aria-labelledby="tab-0-Rm9ydHJhbg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tabpanel" tabindex="0"><p>The suggested solutions below use pFUnit.</p>
+</div></div>
+</div>
+<p>Start by discussing how you would design tests for the
+following five functions, and then try to write the tests.
+Also discuss why some are easier to test than others.</p>
+<div class="admonition-design-1-design-a-test-for-a-function-that-receives-a-number-and-returns-a-number exercise important admonition" id="exercise-2">
+<p class="admonition-title">Design-1: Design a test for a function that receives a number and returns a number</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button><button aria-controls="panel-1-Ug==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Ug==" name="Ug==" role="tab" tabindex="-1">R</button><button aria-controls="panel-1-SnVsaWE=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-SnVsaWE=" name="SnVsaWE=" role="tab" tabindex="-1">Julia</button><button aria-controls="panel-1-Rm9ydHJhbg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tab" tabindex="-1">Fortran</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the factorial of n.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;received negative input&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Computes the factorial of n recursively. */</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">factorial</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Ug==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; Computes the factorial of n</span>
+<span class="c1">#&#39;</span>
+<span class="c1">#&#39; @param n The number to compute the factorial of.</span>
+<span class="c1">#&#39; @return The factorial of n</span>
+<span class="n">factorial</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">stop</span><span class="p">(</span><span class="s">&#39;received negative input&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span>
+<span class="w">  </span><span class="n">result</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-SnVsaWE=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-SnVsaWE=" name="SnVsaWE=" role="tabpanel" tabindex="0"><div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    factorial(n::Int)</span>
+
+<span class="s">Compute the factorial of n.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">::</span><span class="kt">Int</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="n">throw</span><span class="p">(</span><span class="kt">DomainError</span><span class="p">(</span><span class="s">&quot;n must be non-negative&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">i</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Rm9ydHJhbg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tabpanel" tabindex="0"><div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">factorial_mod</span>
+<span class="k">contains</span>
+<span class="w">   </span><span class="c">! computes the factorial of n</span>
+<span class="w">   </span><span class="kt">integer </span><span class="k">function </span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">      </span><span class="k">implicit none</span>
+<span class="k">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span>
+<span class="w">      </span><span class="kt">integer </span><span class="n">r</span>
+<span class="w">      </span><span class="kt">integer </span><span class="n">i</span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Received negative input&#39;</span>
+<span class="w">         </span><span class="k">stop</span>
+<span class="k">      end if</span>
+<span class="k">      </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="w">         </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">*</span><span class="n">i</span>
+<span class="w">      </span><span class="k">end do</span>
+<span class="k">      </span><span class="n">factorial</span><span class="o">=</span><span class="n">r</span>
+<span class="w">   </span><span class="k">end function </span><span class="n">factorial</span>
+<span class="k">end module </span><span class="n">factorial_mod</span>
+</pre></div>
+</div>
+</div></div>
+<div class="admonition-discussion discussion important admonition" id="discussion-1">
+<p class="admonition-title">Discussion</p>
+<p>The factorial grows very rapidly. What happens if you
+pass a large number as argument to the function?</p>
+</div>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-1">
+<p class="admonition-title">Solution</p>
+<p>This is a <strong>pure function</strong> so is easy to test: inputs go to
+outputs.  For example, start with the below, then think of some
+what extreme cases/boundary cases there might be.  This example shows
+all of the tests as one function, but you might want to make each test
+function more fine-grained and test only one concept.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-2-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button><button aria-controls="panel-2-Ug==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Ug==" name="Ug==" role="tab" tabindex="-1">R</button><button aria-controls="panel-2-SnVsaWE=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-SnVsaWE=" name="SnVsaWE=" role="tab" tabindex="-1">Julia</button><button aria-controls="panel-2-Rm9ydHJhbg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tab" tabindex="-1">Fortran</button></div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_factorial</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+       
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;catch2/catch.hpp&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;factorial.hpp&quot;</span>
+
+<span class="n">TEST_CASE</span><span class="p">(</span><span class="s">&quot;Compute the factorial&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[factorial]&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">REQUIRE</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">REQUIRE</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">REQUIRE</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">REQUIRE</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-Ug==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;Test factorial&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">factorial</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">factorial</span><span class="p">(</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">factorial</span><span class="p">(</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">factorial</span><span class="p">(</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="w">  </span><span class="c1"># also try negatives (check that it raises an error), non-integers, etc.</span>
+
+<span class="w">  </span><span class="c1"># Raise an error if factorial does *not* raise an error:</span>
+<span class="w">  </span><span class="nf">expect_error</span><span class="p">(</span><span class="nf">factorial</span><span class="p">(</span><span class="m">-1</span><span class="p">))</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-SnVsaWE=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-SnVsaWE=" name="SnVsaWE=" role="tabpanel" tabindex="0"><div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nd">@testset</span><span class="w"> </span><span class="s">&quot;Test factorial function&quot;</span><span class="w"> </span><span class="k">begin</span>
+<span class="w">    </span><span class="nd">@test_throws</span><span class="w"> </span><span class="kt">DomainError</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@test</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-Rm9ydHJhbg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Rm9ydHJhbg==" name="Rm9ydHJhbg==" role="tabpanel" tabindex="0"><div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">test</span>
+<span class="k">subroutine </span><span class="n">test_factorial</span><span class="p">()</span>
+<span class="w">   </span><span class="k">use </span><span class="n">factorial_mod</span>
+<span class="w">   </span><span class="k">use </span><span class="n">funit</span>
+<span class="w">   </span><span class="err">@</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;factorial(5)&#39;</span><span class="p">)</span>
+<span class="k">end subroutine </span><span class="n">test_factorial</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="embed-pdf-slides">
+<h2>Embed PDF slides<a class="headerlink" href="#embed-pdf-slides" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">pdfembed</span></code> directive can be used to embed slides as follows (NOTE: the slides need to be placed under the <code class="docutils literal notranslate"><span class="pre">content/_static</span></code> directory):</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>:::{pdfembed} ../../_static/slides/efficient-array-computing.pdf
+:::
+</pre></div>
+</div>
+<p>which gives</p>
+<div class="pdfembed"><object id="pdf-fa1f6f02-212b-4b99-a508-2942283f0771" style="border:1px solid #666CCC" data="../../_static/slides/efficient-array-computing.pdf" type="application/pdf" height="550vh" width="100%" title="PDF" align="center"><p class="warning">Your browser does not support PDFs. <a href="../../_static/slides/efficient-array-computing.pdf">Download the PDF</a>.</p></object></div></section>
+</section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="coderef" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Adapted from the <a class="reference external" href="https://coderefinery.github.io/testing/">Coderefinery testing lesson</a>, licensed CC-BY 4.0.</p>
+</aside>
+</aside>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../reference-for-learners/" class="btn btn-neutral float-left" title="Reference for learners" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, The contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
