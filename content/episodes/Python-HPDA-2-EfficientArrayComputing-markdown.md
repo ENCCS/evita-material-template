@@ -1,4 +1,8 @@
-# Efficient Array Computing in Markdown
+# Efficient Array Computing (in Markdown)
+
+:::{caution}
+The content below is identical to the previous episode, and only the source file differs. This file is generated from an markdown file.
+:::
 
 This episode introduces how to write high-performance numerical code in Python packages (Numpy, Pandas, and Scipy) by leveraging tools and libraries designed to optimize computation speed and memory usage. It explores strategies such as vectorization with NumPy, just-in-time compilation using Numba, and parallelization techniques that can significantly reduce execution time. These methods help Python developers overcome the traditional performance limitations of the language, making it suitable for intensive scientific and engineering applications.
 
