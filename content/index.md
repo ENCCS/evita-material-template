@@ -26,6 +26,7 @@ episodes/Python-HPDA-0-SoftwareSetup
 
 episodes/Python-HPDA-1-Motivation
 episodes/Python-HPDA-2-EfficientArrayComputing
+episodes/Python-HPDA-2-EfficientArrayComputing-markdown
 episodes/quiz/quiz_in_episodes
 episodes/Example-PDF-markdown
 :::
