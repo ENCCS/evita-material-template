@@ -1,4 +1,5 @@
 Sphinx
+furo
 sphinx_rtd_theme>=2.0
 sphinx_rtd_theme_ext_color_contrast
 myst_nb
