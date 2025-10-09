@@ -12,7 +12,8 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
+
+sys.path.insert(0, os.path.abspath("."))
 
 import sphinx_evita
 
@@ -38,7 +39,6 @@ extensions = [
     "sphinx_lesson",
     "myst_nb",
     # remove once sphinx_rtd_theme updated for contrast and accessibility:
-    "sphinx_rtd_theme_ext_color_contrast",
     "sphinx.ext.todo",
 ]
 
@@ -50,10 +50,7 @@ nb_execution_mode = "off"
 # nb_execution_mode = "cache"
 
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
-myst_enable_extensions = [
-    "colon_fence",
-    "attrs_inline"
-]
+myst_enable_extensions = ["colon_fence", "attrs_inline"]
 
 # Settings for sphinx-copybutton
 copybutton_exclude = ".linenos, .gp"
@@ -78,7 +75,8 @@ exclude_patterns = [
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
+html_title = project
 html_logo = "img/evita.png"
 html_favicon = "img/favicon.ico"
 
@@ -115,6 +113,7 @@ html_context = {
 #    #'matplotlib': ('https://matplotlib.org/', None),
 #    'seaborn': ('https://seaborn.pydata.org/', None),
 # }
+
 
 def setup(app):
     sphinx_evita.setup(app)
