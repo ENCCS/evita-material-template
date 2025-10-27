@@ -29,6 +29,7 @@ episodes/Python-HPDA-2-EfficientArrayComputing
 episodes/Python-HPDA-2-EfficientArrayComputing-markdown
 episodes/Python-HPDA-2-EfficientArrayComputing-pdf
 episodes/quiz/quiz_in_episodes
+episodes/ModuleName-1-EpisodeName
 :::
 
 :::{toctree}
