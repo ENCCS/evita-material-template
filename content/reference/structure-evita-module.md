@@ -33,6 +33,7 @@ Module developers are expected to provide the following:
 - Questions and quizzes for _summative assessment_.
 - `instructor-guide.md`
 - `reference-for-learners.md`
+- `CITATION.cff` file
 
 To sum up a new module is organized as shown below:
 
@@ -178,4 +179,21 @@ The [instructor guide](../instructor-guide.md) in the current example module.
 
 :::{seealso}
 The [reference for learners](../reference-for-learners.md) in the current example module.
+:::
+
+## The `CITATION.cff` file
+
+This citation file format file encodes metadata such as author
+information, affiliation and so on. You are also expected to
+tag appropriate skills related to
+[HPC certification forum's skill tree](https://www.hpc-certification.org/wiki/skill-tree/b) under the `identifiers` field.
+For example:
+
+:::{literalinclude} ../../CITATION.cff
+:start-after: LiU
+:end-before: repository-code
+:::
+
+:::{seealso}
+[Citation file format generator](https://citation-file-format.github.io/#/create-a-citationcff-file-now).
 :::
