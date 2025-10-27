@@ -25,9 +25,9 @@ Module developers are expected to provide the following:
 - `conf.py`
 - `index.md`
 - An episodes directory containing
-	- Jupyter notebooks (Markdown and reStructuredText files are also acceptable; alternatively slides)
+	- Jupyter notebooks preferably (Markdown and reStructuredText files are also acceptable; alternatively slides in ODP/PPTX and PDF pairs)
 	- Images used in the notebooks
-	- Code examples referenced in the notebooks
+	- Longer code examples referenced in the notebooks as stand-alone file (Short code snippets can be described inline).
     - Demos and type-along sessions to introduce the topic
     - Discussions and exercises designed for _formative assessment_.
 - Questions and quizzes for _summative assessment_.
@@ -90,12 +90,14 @@ include:
 		- 1) **Software setup** -- instructions for configuring the programming environment
 		- 2) **Episodes** -- teaching content of the module divided into smaller units called episodes
 		- 3) **Reference** -- notes for instructors and additional resources
-- **Learning outcomes** (following Bloom’s Taxonomy guidelines)
+- **Learning outcomes** (following Bloom’s Taxonomy guidelines)[^gpt-learn-out]
 	- Target learners and practical skills they will gain
 	- **Links to relevant leaves in the skill tree**
 	- Optionally, mention related topics not covered in this module and link them to the skill tree
 - **Credit** (to be reformulated ASAP)
 - **License** (to be reformulated ASAP)
+
+[^gpt-learn-out]: To make an initial draft of the learning outcomes from a course description, authors can use the [Blooms Taxonomy for HPCCF](https://chatgpt.com/g/g-67768fbf69dc819199207ef9e3d4d697-blooms-taxonomy-for-hpccf/c/68ff9d13-de94-832f-a112-dda046af41b3) tool.
 
 :::{seealso}
 The [index.md file](../index.md) of this very own module template. You can view the source, by clicking on the _eye icon_ on the top.
