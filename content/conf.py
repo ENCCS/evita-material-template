@@ -116,7 +116,7 @@ html_context = {
 # extensions.append('sphinx.ext.intersphinx')
 intersphinx_mapping = {
     #    #'python': ('https://docs.python.org/3', None),
-    #    #'sphinx': ('https://www.sphinx-doc.org/', None),
+    "sphinx": ("https://www.sphinx-doc.org/", None),
     #    #'numpy': ('https://numpy.org/doc/stable/', None),
     #    #'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
     #    #'pandas': ('https://pandas.pydata.org/docs/', None),
@@ -124,5 +124,6 @@ intersphinx_mapping = {
     #    'seaborn': ('https://seaborn.pydata.org/', None),
     "evita": ("https://sphinx-evita.readthedocs.io/en/latest", None),
     "instruct": ("https://enccs.github.io/instructor-training/", None),
+    "lesson": ("https://coderefinery.github.io/sphinx-lesson/", None),
     "myst": ("https://myst-parser.readthedocs.io/en/latest/", None),
 }

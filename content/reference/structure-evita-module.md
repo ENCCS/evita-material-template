@@ -12,7 +12,12 @@ the documentation for the `sphinx-evita` extension[^ref-auth].
 
 An EVITA module is a combination of pedagogical material and 
 working examples of code. These are presented to a learner in 
-smaller logical units called *episodes*.    
+smaller logical units called *episodes*. The module extensively uses
+
+- [Sphinx](inv:sphinx:std#index) as the documentation engine,
+- [MyST Parser](inv:myst:std#index) to parse the content in Markdown and Jupyter notebooks,
+- [sphinx-lesson](inv:lesson:std#index) to provide an extended set of markup known as _directives_, and
+- [sphinx-evita](inv:evita:std#index) to customize the appearance. 
 
 ## Overview
 
