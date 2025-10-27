@@ -91,13 +91,6 @@ html_context = {
     "github_repo": github_repo_name or basename(dirname(dirname(realpath(__file__)))),
     "github_version": github_version,
     "conf_py_path": conf_py_path,
-    "sidebar_external_links_caption": "Links",
-    "sidebar_external_links": [
-        (
-            '<i class="fa fa-cube fa-fw"></i> PyPI',
-            f"https://pypi.org/project/{project.lower()}",
-        ),
-    ]
 }
 
 # Intersphinx mapping.  For example, with this you can use
