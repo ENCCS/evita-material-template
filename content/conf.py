@@ -14,8 +14,9 @@
 # -- Project information -----------------------------------------------------
 
 project = "High Performance Data Analytics in Python"  # FIXME: choose title
-author = "Jane Doe"  # FIXME: insert author
-copyright = f"2025, EVITA project and {author}"
+author = "Jane Doe and John Doe"  # FIXME: insert author
+copyright = f"2025, EVITA project, {author}"
+
 github_user = "ENCCS"  # FIXME: github organization / user that the repository belongs to
 github_repo_name = ""  # auto-detected from dirname if blank
 github_version = "main"
@@ -47,7 +48,10 @@ nb_execution_mode = "off"
 # nb_execution_mode = "cache"
 
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
-myst_enable_extensions = ["colon_fence", "attrs_inline"]
+myst_enable_extensions = ["colon_fence", "attrs_inline", "substitution"]
+myst_substitutions = {
+    "author": author
+}
 
 # Settings for sphinx-copybutton
 copybutton_exclude = ".linenos, .gp"
