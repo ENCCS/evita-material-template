@@ -122,5 +122,6 @@ intersphinx_mapping = {
     #    #'pandas': ('https://pandas.pydata.org/docs/', None),
     #    #'matplotlib': ('https://matplotlib.org/', None),
     #    'seaborn': ('https://seaborn.pydata.org/', None),
-    "evita": ("https://sphinx-evita.readthedocs.io/en/latest", None)
+    "evita": ("https://sphinx-evita.readthedocs.io/en/latest", None),
+    "instruct": ("https://enccs.github.io/instructor-training/", None)
 }
