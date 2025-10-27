@@ -17,6 +17,7 @@ project = "High Performance Data Analytics in Python"  # FIXME: choose title
 # FIXME: insert correct author
 author = "\
 Ashwin Vishnu Mohanan, \
+Claudia Blaas-Schenner, \
 Jaison Lewis, \
 Jasper Seehofer, \
 Kevin Lüdemann, \
