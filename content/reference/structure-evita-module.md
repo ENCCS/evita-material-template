@@ -33,6 +33,40 @@ Module developers are expected to provide the following:
 - `instructor-guide.md`
 - `reference-for-learners.md`
 
+To sum up a new module is organized as shown below:
+
+```
+├── _build
+├── CITATION.cff
+├── content
+│   ├── conf.py
+│   ├── episodes
+│   │   ├── code
+│   │   │   └── code-example.py
+│   │   ├── images
+│   │   │   └── inline-image-example.png
+│   │   ├── ModuleName-1-EpisodeName.md
+│   │   ├── ModuleName-2-EpisodeName.ipynb
+│   │   ├── ModuleName-3-EpisodeName.md
+│   │   └── quiz
+│   │       ├── quiz_in_episodes.md
+│   │       └── solution_for_quiz_in_episodes.md
+│   ├── index.md
+│   ├── instructor-guide.md
+│   ├── reference-for-learners.md
+│   └── _static
+│       └── slides
+│           ├── slides-3-EpisodeName.pdf
+│           └── slides-3-EpisodeName.pptx
+├── LICENSE
+├── LICENSE.code
+├── make.bat
+├── Makefile
+├── pylock.toml
+├── pyproject.toml
+└── README.md
+```
+
 ## The `index.md` file
 
 The `index.md` file is the landing page of the course. This should

@@ -2,7 +2,7 @@
 
 > [!NOTE]
 > Authors who will adopt this template for developing modules are recommended to
-> [begin here](https://enccs.github.io/evita-material-template/reference/structure-evita-module.html)
+> [begin here](https://enccs.github.io/evita-material-template/reference/structure-evita-module/).
 
 
 ## Acknowledgements
