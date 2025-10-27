@@ -22,6 +22,7 @@ smaller logical units called *episodes*. The module extensively uses
 ## Overview
 
 Module developers are expected to provide the following:
+- `conf.py`
 - `index.md`
 - An episodes directory containing
 	- Jupyter notebooks (Markdown and reStructuredText files are also acceptable; alternatively slides)
@@ -66,6 +67,13 @@ To sum up a new module is organized as shown below:
 ├── pyproject.toml
 └── README.md
 ```
+
+## The `conf.py` file
+
+The `conf.py` file contains all the configuration for Sphinx. This
+includes details like title, authors, Sphinx extensions and their
+configuration. Some comments with `FIXME:` is provided where
+appropriate replacements should be made. 
 
 ## The `index.md` file
 
