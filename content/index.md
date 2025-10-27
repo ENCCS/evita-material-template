@@ -39,12 +39,13 @@ instructor-guide
 reference-for-learners
 :::
 
-:::{toctree}
-:caption: Note for module developers
-:maxdepth: 1
 
-note_for_module_developers/note
+:::{important}
+[Reference for module authors](inv:evita:std#ref-for-module-authors) is maintained along with 
+the documentation for the `sphinx-evita` extension[^ref-link].
 :::
+
+[^ref-link]: <https://sphinx-evita.readthedocs.io/en/latest/ref-for-module-authors.html>
 
 ## Learning outcomes
 

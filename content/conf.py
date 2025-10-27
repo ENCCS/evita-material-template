@@ -10,20 +10,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-
-sys.path.insert(0, os.path.abspath("."))
-
-import sphinx_evita
-
 
 # -- Project information -----------------------------------------------------
 
-project = "High Performance Data Analytics in Python"
-copyright = "2021, The contributors"
-author = "The contributors"
-github_user = "ENCCS"
+project = "High Performance Data Analytics in Python"  # FIXME: choose title
+author = "Jane Doe"  # FIXME: insert author
+copyright = f"2025, EVITA project and {author}"
+github_user = "ENCCS"  # FIXME: github organization / user that the repository belongs to
 github_repo_name = ""  # auto-detected from dirname if blank
 github_version = "main"
 conf_py_path = "/content/"  # with leading and trailing slash
@@ -37,10 +30,14 @@ extensions = [
     # githubpages just adds a .nojekyll file
     "sphinx.ext.githubpages",
     "sphinx_lesson",
+    "sphinx_evita",
+    "sphinxcontrib.bibtex",
     "myst_nb",
-    # remove once sphinx_rtd_theme updated for contrast and accessibility:
     "sphinx.ext.todo",
+    "sphinx.ext.intersphinx",
 ]
+
+bibtex_bibfiles = []  # FIXME: add bibtex files for references if any
 
 # Settings for myst_nb:
 # https://myst-nb.readthedocs.io/en/latest/use/execute.html#triggering-notebook-execution
@@ -75,16 +72,13 @@ exclude_patterns = [
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "furo"
 html_title = project
-html_logo = "img/evita.png"
-html_favicon = "img/favicon.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-html_css_files = ["overrides.css"]
+# html_css_files = ["overrides.css"]
 
 # HTML context:
 from os.path import basename, dirname, realpath
@@ -97,6 +91,13 @@ html_context = {
     "github_repo": github_repo_name or basename(dirname(dirname(realpath(__file__)))),
     "github_version": github_version,
     "conf_py_path": conf_py_path,
+    "sidebar_external_links_caption": "Links",
+    "sidebar_external_links": [
+        (
+            '<i class="fa fa-cube fa-fw"></i> PyPI',
+            f"https://pypi.org/project/{project.lower()}",
+        ),
+    ]
 }
 
 # Intersphinx mapping.  For example, with this you can use
@@ -104,7 +105,7 @@ html_context = {
 # List all available references:
 #   python -msphinx.ext.intersphinx https://docs.python.org/3/objects.inv
 # extensions.append('sphinx.ext.intersphinx')
-# intersphinx_mapping = {
+intersphinx_mapping = {
 #    #'python': ('https://docs.python.org/3', None),
 #    #'sphinx': ('https://www.sphinx-doc.org/', None),
 #    #'numpy': ('https://numpy.org/doc/stable/', None),
@@ -112,8 +113,5 @@ html_context = {
 #    #'pandas': ('https://pandas.pydata.org/docs/', None),
 #    #'matplotlib': ('https://matplotlib.org/', None),
 #    'seaborn': ('https://seaborn.pydata.org/', None),
-# }
-
-
-def setup(app):
-    sphinx_evita.setup(app)
+    'evita': ("https://sphinx-evita.readthedocs.io/en/latest", None) 
+}
