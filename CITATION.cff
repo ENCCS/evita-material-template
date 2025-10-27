@@ -8,16 +8,43 @@ message: >-
   from this file.
 type: software
 authors:
-  - given-names: Jane
-    family-names: Doe
-    email: jane.doe@example.com
-    affiliation: Acme University
-    orcid: 'https://orcid.org/1234-5678-0910-1112'
-  - given-names: John
-    family-names: Doe
-    email: john.doe@example.com
-    affiliation: Foo Institute
-    orcid: 'https://orcid.org/1211-1009-8765-4321'
+  - given-names: Ashwin Vishnu
+    family-names: Mohanan
+    email: ashwin.mohanan@ri.se
+    affiliation: RISE
+    orcid: 'https://orcid.org/0000-0002-2979-6327'
+  - given-names: Claudia
+    family-names: Claudia Blaas-Schenner
+    affiliation: TU Wien
+  - given-names: Jaison
+    family-names: Lewis
+    affiliation: GWDG
+  - given-names: Jasper
+    family-names: Seehofer
+    affiliation: HLRS, University of Stuttgart
+  - given-names: Kevin
+    family-names: Lüdemann
+    affiliation: GWDG
+  - given-names: Kjartan Thor
+    family-names: Wikfeldt
+    affiliation: RISE
+  - given-names: Mary Kate
+    family-names: Cheesey
+    affiliation: BSC
+  - given-names: Matthias
+    family-names: Eulert
+  - given-names: Tobias
+    family-names: Haas
+    affiliation: HLRS, University of Stuttgart
+  - given-names: Victoria
+    family-names: Döller
+    affiliation: TU Wien
+  - given-names: Yinyin
+    family-names: Ma
+    affiliation: HLRS, University of Stuttgart
+  - given-names: Yonglei
+    family-names: Wang
+    affiliation: LiU
 identifiers:
   - type: url
     value: >-
@@ -31,9 +58,9 @@ identifiers:
     value: >-
       https://www.hpc-certification.org/wiki/skill-tree/sd/1/3/b
     description: SD1.3 Efficient Algorithms and Data Structures
-  - type: doi
-    value: 10.1234/zenodo.4321
-    description: Module archive on Zenodo
+  # - type: doi
+  #   value: 10.1234/zenodo.4321
+  #   description: Module archive on Zenodo
 repository-code: 'https://code.europa.eu/evita/modules/'
 url: 'https://www.evitahpc.eu/'
 abstract: >-
@@ -66,6 +93,6 @@ abstract: >-
 keywords:
   - python
   - HPDA
-license: CC-BY-4.0
-version: '2025.09'
-date-released: '2025-09-30'
+license: CC-BY-SA-4.0
+version: '2025.10'
+date-released: '2025-10-27'

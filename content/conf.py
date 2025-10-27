@@ -14,10 +14,24 @@
 # -- Project information -----------------------------------------------------
 
 project = "High Performance Data Analytics in Python"  # FIXME: choose title
-author = "Jane Doe and John Doe"  # FIXME: insert author
+# FIXME: insert correct author
+author = "\
+Ashwin Vishnu Mohanan, \
+Jaison Lewis, \
+Jasper Seehofer, \
+Kevin Lüdemann, \
+Kjartan Thor Wikfeldt, \
+Mary Kate Chessey, \
+Matthias Eulert, \
+Tobias Haas, \
+Victoria Döller, \
+Yinyin Ma, and \
+Yonglei Wang"
 copyright = f"2025, EVITA project, {author}"
 
-github_user = "ENCCS"  # FIXME: github organization / user that the repository belongs to
+github_user = (
+    "ENCCS"  # FIXME: github organization / user that the repository belongs to
+)
 github_repo_name = ""  # auto-detected from dirname if blank
 github_version = "main"
 conf_py_path = "/content/"  # with leading and trailing slash
@@ -49,9 +63,7 @@ nb_execution_mode = "off"
 
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 myst_enable_extensions = ["colon_fence", "attrs_inline", "substitution"]
-myst_substitutions = {
-    "author": author
-}
+myst_substitutions = {"author": author}
 
 # Settings for sphinx-copybutton
 copybutton_exclude = ".linenos, .gp"
@@ -103,12 +115,12 @@ html_context = {
 #   python -msphinx.ext.intersphinx https://docs.python.org/3/objects.inv
 # extensions.append('sphinx.ext.intersphinx')
 intersphinx_mapping = {
-#    #'python': ('https://docs.python.org/3', None),
-#    #'sphinx': ('https://www.sphinx-doc.org/', None),
-#    #'numpy': ('https://numpy.org/doc/stable/', None),
-#    #'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
-#    #'pandas': ('https://pandas.pydata.org/docs/', None),
-#    #'matplotlib': ('https://matplotlib.org/', None),
-#    'seaborn': ('https://seaborn.pydata.org/', None),
-    'evita': ("https://sphinx-evita.readthedocs.io/en/latest", None) 
+    #    #'python': ('https://docs.python.org/3', None),
+    #    #'sphinx': ('https://www.sphinx-doc.org/', None),
+    #    #'numpy': ('https://numpy.org/doc/stable/', None),
+    #    #'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
+    #    #'pandas': ('https://pandas.pydata.org/docs/', None),
+    #    #'matplotlib': ('https://matplotlib.org/', None),
+    #    'seaborn': ('https://seaborn.pydata.org/', None),
+    "evita": ("https://sphinx-evita.readthedocs.io/en/latest", None)
 }
