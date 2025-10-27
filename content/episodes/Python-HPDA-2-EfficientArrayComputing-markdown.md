@@ -1,7 +1,18 @@
+---
+file_format: mystnb
+kernelspec:
+  name: python3
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: '0.13'
+    jupytext_version: 1.18.1
+---
 # Efficient Array Computing (in Markdown)
 
 :::{caution}
-The content below is identical to the previous episode, and only the source file differs. This page is generated from an markdown file.
+The content below is nearly identical to the previous episode, and only the source file differs. This page is generated from an markdown file.
 :::
 
 This episode introduces how to write high-performance numerical code in Python packages (Numpy, Pandas, and Scipy) by leveraging tools and libraries designed to optimize computation speed and memory usage. It explores strategies such as vectorization with NumPy, just-in-time compilation using Numba, and parallelization techniques that can significantly reduce execution time. These methods help Python developers overcome the traditional performance limitations of the language, making it suitable for intensive scientific and engineering applications.
@@ -384,11 +395,17 @@ print("s =", params[1], "+/-", cov[1,1]**0.5)
 
 ```{code-cell} ipython3
 # optionally plot
-import matplotlib.pyplot as plt
-plt.scatter(X,Y, label="raw data")
-plt.plot(X, powerlaw(X, params[0], params[1]), label="power law")
-plt.legend()
-plt.show()
+import pandas as pd
+import hvplot.pandas
+
+data = pd.DataFrame({
+    "x": X,
+    "raw data": Y,
+    "power law": powerlaw(X, params[0], params[1])
+})
+scatter = data["raw data"].hvplot(kind="scatter", color="red")
+line = data["power law"].hvplot()
+(scatter * line)
 ```
 
 ## Exercises
