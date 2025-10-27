@@ -40,18 +40,13 @@ instructor-guide
 reference-for-learners
 :::
 
+:::{toctree}
+:caption: Walkthrough for module authors
+:maxdepth: 1
 
-:::{important}
-*To module authors*:
-
-- For a _technical overview_ for authoring such modules, a
-[reference for module authors](inv:evita:std#ref-for-module-authors) is maintained along with 
-the documentation for the `sphinx-evita` extension[^ref-auth].
-- For _best practices_ in creating great lessons, get inspired by reading a [primer on lesson design](inv:instruct:std#lesson-design)[^ref-lesson-design].
+reference/structure-evita-module
 :::
 
-[^ref-auth]: <https://sphinx-evita.readthedocs.io/en/latest/ref-for-module-authors.html>
-[^ref-lesson-design]: <https://enccs.github.io/instructor-training/lesson-design/>
 
 ## Learning outcomes
 

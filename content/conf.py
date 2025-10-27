@@ -123,5 +123,6 @@ intersphinx_mapping = {
     #    #'matplotlib': ('https://matplotlib.org/', None),
     #    'seaborn': ('https://seaborn.pydata.org/', None),
     "evita": ("https://sphinx-evita.readthedocs.io/en/latest", None),
-    "instruct": ("https://enccs.github.io/instructor-training/", None)
+    "instruct": ("https://enccs.github.io/instructor-training/", None),
+    "myst": ("https://myst-parser.readthedocs.io/en/latest/", None),
 }

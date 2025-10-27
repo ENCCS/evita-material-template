@@ -1,0 +1,134 @@
+# Structure of an EVITA module
+
+:::{important}
+- For a _technical overview_ for authoring such modules, a
+[reference for module authors](inv:evita:std#ref-for-module-authors) is maintained along with 
+the documentation for the `sphinx-evita` extension[^ref-auth].
+- For _best practices_ in creating great lessons, get inspired by reading a [primer on lesson design](inv:instruct:std#lesson-design)[^ref-lesson-design].
+:::
+
+[^ref-auth]: <https://sphinx-evita.readthedocs.io/en/latest/ref-for-module-authors.html>
+[^ref-lesson-design]: <https://enccs.github.io/instructor-training/lesson-design/>
+
+An EVITA module is a combination of pedagogical material and 
+working examples of code. These are presented to a learner in 
+smaller logical units called *episodes*.    
+
+## Overview
+
+Module developers are expected to provide the following:
+- `index.md`
+- An episodes directory containing
+	- Jupyter notebooks (Markdown and reStructuredText files are also acceptable; alternatively slides)
+	- Images used in the notebooks
+	- Code examples referenced in the notebooks
+    - Demos and type-along sessions to introduce the topic
+    - Discussions and exercises designed for _formative assessment_.
+- Questions and quizzes for _summative assessment_.
+- `instructor-guide.md`
+- `reference-for-learners.md`
+
+## The `index.md` file
+
+The `index.md` file is the landing page of the course. This should
+include:
+- Title of this module
+- General description (1–3 paragraphs)
+- **Prerequisites**
+	- Reading materials or other preparation required before starting this module
+- Links to episodes in correct order
+	- Must use the [toctree syntax](inv:myst:std#syntax/toctree)
+	- At least three sections should be included:
+		- 1) **Software setup** -- instructions for configuring the programming environment
+		- 2) **Episodes** -- teaching content of the module divided into smaller units called episodes
+		- 3) **Reference** -- notes for instructors and additional resources
+- **Learning outcomes** (following Bloom’s Taxonomy guidelines)
+	- Target learners and practical skills they will gain
+	- **Links to relevant leaves in the skill tree**
+	- Optionally, mention related topics not covered in this module and link them to the skill tree
+- **Credit** (to be reformulated ASAP)
+- **License** (to be reformulated ASAP)
+
+:::{seealso}
+The [index.md file](../index.md) of this very own module template. You can view the source, by clicking on the _eye icon_ on the top.
+:::
+
+## Episode on _setting up programming environment_
+
+Provide a dedicated notebook (Markdown or reStructuredText also acceptable) with at least two sessions covering environment setup:
+- **Local installation**
+	- Specify package versions (*e.g.*, via `requirements.txt` or `environment.yml`)
+	- Detailed setup instructions for Windows, macOS, and Linux users
+	- Optionally provide a containerized setup
+- **HPC cluster installation**
+	- Instructions valid for a specific supercomputer (preferably an EuroHPC cluster)
+	- Specify package versions (as above)
+	- Optionally provide a containerized setup
+	- Example SLURM batch script for running exercises
+- **Datasets**
+	- If a dataset is required and smaller than 100 MB, include it directly
+	- If larger, provide instructions for downloading it from an external archive
+
+:::{seealso}
+The [setup episode](../episodes/Python-HPDA-0-SoftwareSetup.ipynb).
+:::
+
+## Episodes for teaching
+
+These episodes are the core content which introduces and goes
+deeper into the topic at hand. Each episode should include:
+- A general description
+- **Objectives** for learners
+- **Instructor note** (suggested time allocation, code demos, exercises, etc.)
+- At least one of the following between major sections:
+	- `Discussion`
+	- `Code for demonstration`
+	- `Exercise` (with corresponding `Solution`)
+- Highlighted notifications such as `Note`, `Caution`, `Attention`, *etc.*
+	- See the Jupyter Notebook titled **Reference for module developers** for more options
+- **Images** to illustrate key concepts (stored in an images directory)
+- **Videos** if needed to demonstrate continuous processes
+	- Videos may be provided directly or linked from YouTube
+- **Code examples** stored in a code directory, with references in the notebook
+- **Keypoints** at the end of the episode, summarizing its content
+- **See also** with additional reading materials
+
+:::{seealso}
+You can look at any of the episodes in this current example module.
+If you are starting something new, use
+[this boilerplate episode](../episodes/ModuleName-1-EpisodeName.md).
+:::
+
+## Quiz
+
+- Provide summative assessment questions suitable for supervised or unsupervised evaluation
+- Formats may include:
+	- Multiple-choice questions
+	- Coding tasks
+
+:::{note}
+The current page on [quiz](../quiz/quiz_in_episodes) is for demonstration purposes only. The format
+may change.
+:::
+
+## Instructor guide
+
+The instructor guide should include:
+- Recommended teaching hours and participant numbers
+- Mode of teaching and exercises
+- Hardware requirements (including HPC if applicable)
+- Learner personas
+- Additional teaching recommendations
+
+:::{seealso}
+The [instructor guide](../instructor-guide.md) in the current example module.
+:::
+
+## Reference for Learners
+
+- Glossary of terms
+- External resources for further study
+
+:::{seealso}
+The [reference for learners](../reference-for-learners.md) in the current example module.
+:::
