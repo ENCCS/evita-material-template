@@ -38,7 +38,6 @@ Module developers are expected to provide the following:
 To sum up a new module is organized as shown below:
 
 ```
-├── _build
 ├── CITATION.cff
 ├── content
 │   ├── conf.py
@@ -157,7 +156,7 @@ If you are starting something new, use
 	- Coding tasks
 
 :::{note}
-The current page on [quiz](../quiz/quiz_in_episodes) is for demonstration purposes only. The format
+The current page on [quiz](../episodes/quiz/quiz_in_episodes.md) is for demonstration purposes only. The format
 may change.
 :::
 
