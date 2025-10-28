@@ -96,7 +96,7 @@ include:
 - **Credit** (to be reformulated ASAP)
 - **License** (to be reformulated ASAP)
 
-[^gpt-learn-out]: To make an initial draft of the learning outcomes from a course description, authors can use the [Blooms Taxonomy for HPCCF](https://chatgpt.com/g/g-67768fbf69dc819199207ef9e3d4d697-blooms-taxonomy-for-hpccf/c/68ff9d13-de94-832f-a112-dda046af41b3) tool.
+[^gpt-learn-out]: To make an initial draft of the learning outcomes from a course description, authors can use the AI-assisted [Blooms Taxonomy for HPCCF](https://chatgpt.com/g/g-67768fbf69dc819199207ef9e3d4d697-blooms-taxonomy-for-hpccf/c/68ff9d13-de94-832f-a112-dda046af41b3) tool.
 
 :::{seealso}
 The [index.md file](../index.md) of this very own module template. You can view the source, by clicking on the _eye icon_ on the top.
