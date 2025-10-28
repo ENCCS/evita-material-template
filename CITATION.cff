@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Evita Module Template
+title: EVITA Material Template
 message: >-
   If you use this module, please cite it using the metadata
   from this file.
@@ -61,38 +61,50 @@ identifiers:
   # - type: doi
   #   value: 10.1234/zenodo.4321
   #   description: Module archive on Zenodo
-repository-code: 'https://code.europa.eu/evita/modules/'
+repository-code: 'https://github.com/ENCCS/evita-material-template'
+# repository-code: 'https://code.europa.eu/evita/modules/'
 url: 'https://www.evitahpc.eu/'
+## NOTE: for the current example, the abstract and keywords may look like this:
+# abstract: >-
+#   Scientists, engineers and professionals from many sectors
+#   are seeing an enormous growth in the size and number of
+#   datasets relevant to their domains. Professional titles
+#   have emerged to describe specialists working with data,
+#   such as data scientists and data engineers, but also other
+#   experts are finding it necessary to learn tools and
+#   techniques to work with big data. Typical tasks include
+#   preprocessing, analysing, modeling and visualising data.
+
+
+#   Python is an industry-standard programming language for
+#   working with data on all levels of the data analytics
+#   pipeline. This is in large part because of the rich
+#   ecosystem of libraries ranging from generic numerical
+#   libraries to special-purpose and/or domain-specific
+#   packages, often supported by large developer communities
+#   and stable funding sources.
+
+
+#   This module will give an overview of working with research
+#   data in Python using general libraries for storing,
+#   processing, analysing and sharing data. The focus is on
+#   high performance. After covering tools for performant
+#   processing on single workstations the focus shifts to
+#   profiling and optimising, parallel and distributed
+#   computing.
+# keywords:
+#   - python
+#   - HPDA
 abstract: >-
-  Scientists, engineers and professionals from many sectors
-  are seeing an enormous growth in the size and number of
-  datasets relevant to their domains. Professional titles
-  have emerged to describe specialists working with data,
-  such as data scientists and data engineers, but also other
-  experts are finding it necessary to learn tools and
-  techniques to work with big data. Typical tasks include
-  preprocessing, analysing, modeling and visualising data.
-
-
-  Python is an industry-standard programming language for
-  working with data on all levels of the data analytics
-  pipeline. This is in large part because of the rich
-  ecosystem of libraries ranging from generic numerical
-  libraries to special-purpose and/or domain-specific
-  packages, often supported by large developer communities
-  and stable funding sources.
-
-
-  This module will give an overview of working with research
-  data in Python using general libraries for storing,
-  processing, analysing and sharing data. The focus is on
-  high performance. After covering tools for performant
-  processing on single workstations the focus shifts to
-  profiling and optimising, parallel and distributed
-  computing.
+  This is a module template for submission to the EVITA (EuroHPC Virtual Training Academy project).
+  The template demonstrates the structure of an EVITA module, through the example of a topic
+  "High Performance Data Analytics in Python". Thus, this template functions as a guide and a 
+  starting-point for authoring new modules.
 keywords:
-  - python
-  - HPDA
+  - HPC
+  - education
+  - template
+  - EVITA
 license: CC-BY-SA-4.0
 version: '2025.10'
-date-released: '2025-10-27'
+date-released: '2025-10-28'
