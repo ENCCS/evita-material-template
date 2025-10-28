@@ -13,7 +13,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "High Performance Data Analytics in Python"  # FIXME: choose title
+# FIXME: choose title
+project = "High Performance Data Analytics in Python"
 # FIXME: insert correct author
 author = "\
 Ashwin Vishnu Mohanan, \
@@ -30,9 +31,8 @@ Yinyin Ma, and \
 Yonglei Wang"
 copyright = f"2025, EVITA project, {author}"
 
-github_user = (
-    "ENCCS"  # FIXME: github organization / user that the repository belongs to
-)
+# FIXME: github organization / user that the repository belongs to
+github_user = "ENCCS"
 github_repo_name = ""  # auto-detected from dirname if blank
 github_version = "main"
 conf_py_path = "/content/"  # with leading and trailing slash
@@ -53,7 +53,8 @@ extensions = [
     "sphinx.ext.intersphinx",
 ]
 
-bibtex_bibfiles = []  # FIXME: add bibtex files for references if any
+# FIXME: add bibtex files for references if any
+bibtex_bibfiles = []
 
 # Settings for myst_nb:
 # https://myst-nb.readthedocs.io/en/latest/use/execute.html#triggering-notebook-execution
@@ -109,6 +110,8 @@ html_context = {
     "github_version": github_version,
     "conf_py_path": conf_py_path,
 }
+
+# FIXME: modify intersphinx mapping to link to external content
 
 # Intersphinx mapping.  For example, with this you can use
 # :py:mod:`multiprocessing` to link straight to the Python docs of that module.
